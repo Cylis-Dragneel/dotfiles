@@ -43,10 +43,6 @@ white = "#f8f8f2"
 background = "#282a36"
 foreground = "#f8f8f2"
 
-
-
-
-
 [selection]
 save_to_clipboard = true
 
