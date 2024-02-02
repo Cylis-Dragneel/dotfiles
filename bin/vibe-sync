@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+#Opening directory where songs are downloaded
+cd /media/taha/Misc./Movies/Songs
+
+#Syncing Playlist
+spotdl sync "vibe.spotdl"
