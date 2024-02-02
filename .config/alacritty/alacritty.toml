@@ -43,9 +43,9 @@ white = "#f8f8f2"
 background = "#282a36"
 foreground = "#f8f8f2"
 
-[colors.cursor]
-text = "CellBackground"
-cursor = "CellForeground"
+
+
+
 
 [selection]
 save_to_clipboard = true
