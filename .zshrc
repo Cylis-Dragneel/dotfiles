@@ -100,7 +100,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #eval "$(jump shell)"
-eval "$(zoxide init zsh)"
+eval "$(zoxide init --cmd cd zsh)"
 
 #Aliases
 alias diofetch='neofetch --backend jp2a --source /home/taha/Downloads/imgs/kono.jpg'
