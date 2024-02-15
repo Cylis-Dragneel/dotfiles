@@ -16,7 +16,7 @@ cd "$target_directory"
 read -p "Enter link of the file: " link 
 
 #Downloads file
-aria2c -x16 "$link"
+aria2c -x16 "$link" -l aria2c
 
 #Gets file name
 echo "Files in directory:"
