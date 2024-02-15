@@ -99,7 +99,10 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-eval "$(jump shell)"
+#eval "$(jump shell)"
+eval "$(zoxide init zsh)"
+
+#Aliases
 alias diofetch='neofetch --backend jp2a --source /home/taha/Downloads/imgs/kono.jpg'
 alias storage='du -h --max-depth=1 ~ | sort -hr | head -n 10'
 alias cb='flatpak run app.getclipboard.Clipboard'
