@@ -10,3 +10,11 @@ git add *
 git add .*
 git commit -m "Changes Made"
 git push origin main
+
+#Getting to desired git repository
+cd ~/Documents/Obsidian/
+
+git add *
+git add .*
+git commit -m "Changes Made"
+git push origin main
