@@ -18,3 +18,9 @@ git add *
 git add .*
 git commit -m "Changes Made"
 git push origin main
+
+cd ~/Portfolio/
+
+git add *
+git commit -m "Changes Made"
+git push origin main
