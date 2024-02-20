@@ -4,3 +4,11 @@
 "jerry --rofi -l english"
     m:0x10 + c:95
     Mod2 + F11
+
+"rofi -show combi -combi-modi 'window,drun,run'"
+    m:0x14 + c:65
+    Control+Mod2 + space
+
+"power_menu_rofi"
+    m:0x18 + c:71
+    Alt+Mod2 + F5
