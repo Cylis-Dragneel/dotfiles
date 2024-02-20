@@ -1,0 +1,6 @@
+# Watch Anime
+
+
+"jerry --rofi -l english"
+    m:0x10 + c:95
+    Mod2 + F11
