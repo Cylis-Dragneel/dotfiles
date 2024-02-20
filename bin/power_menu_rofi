@@ -1,0 +1,20 @@
+#!/bin/sh
+
+Choices=$(printf "Power Off\nRestart\nHibernate\nSuspend\nLogout\nLock" | rofi -dmenu -i -theme-str '@import "power.rasi"')
+
+case "$Choices" in
+  "Power Off") poweroff
+  ;;
+  "Restart") reboot
+  ;;
+  "Hibernate") systemctl hibernate
+  ;;
+  "Suspend") systemctl suspend
+  ;;
+  "Logout") loginctl terminate-session ${XDG_SESSION_ID-}
+  ;;
+  "Lock") loginctl lock-session ${XDG_SESSION_ID-}
+  ;;
+  *) exit 1
+  ;;
+esac
