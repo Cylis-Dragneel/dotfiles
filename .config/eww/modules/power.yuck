@@ -1,0 +1,14 @@
+(defwidget _buttons [shutdown shutdown_icon reboot reboot_icon logout logout_icon hibernate hibernate_icon]
+  (box :class "btns-box" :spacing 5
+       :vexpand true :hexpand true
+       :valign "end" :halign "end"
+       :space-evenly false
+    (button :onclick shutdown shutdown_icon)
+    (button :onclick reboot reboot_icon)
+    (button :onclick logout logout_icon)
+    (button :onclick hibernate hibernate_icon)))
+
+(defwidget power []
+  (box :class "power-box" :space-evenly "false" :orientation "v"
+    (box :space-evenly "false" :hexpand "true" :vexpand "true"
+      (_buttons :shutdown "systemctl poweroff" :reboot "reboot" :logout "loginctl kill-session self" :hibernate "systemctl hibernate" :shutdown_icon "󰐥" :reboot_icon "" :logout_icon "󰍃" :hibernate_icon "⏾"))))

@@ -1,0 +1,28 @@
+(deflisten workspaces :initial "[]" "bash ~/.config/eww/scripts/get-workspaces")
+(deflisten current_workspace :initial "1" "bash ~/.config/eww/scripts/get-active-workspace")
+
+(deflisten workspace0
+  "~/.config/eww/scripts/workspace 0")
+
+(defpoll musicartlink :interval "1s"
+  `playerctl --player=spotify metadata --format "{{ mpris:artUrl }}" | sed 's/b273/1e02/'`)
+(defpoll musicposition :interval "0s"
+  `playerctl --player=spotify metadata --format "{{ duration(position) }}"`)
+(defpoll musiclength :interval "1s"
+  `playerctl --player=spotify metadata --format "{{ duration(mpris:length)}}"`)
+(defpoll musicpositionpercentage :interval "0s"
+  `playerctl --player=spotify metadata --format "{{ position / (mpris:length / 100)  }}"`)
+(defpoll playingorpaused :interval "0s" 
+  `playerctl --player=spotify status`)
+(defpoll music :interval "1s"
+  'playerctl --player=spotify metadata --format "{{ title }} - {{ artist }}" || true')
+(defpoll musicshort :interval "1s"
+  `playerctl --player=spotify metadata --format "{{ title }}" | cut -c1-30`)
+
+(defpoll time :interval "5s" :initial `date +'{"hour":"%H","min":"%M"}'` `date +'{"hour":"%H","min":"%M"}'`)
+
+(defpoll net :interval "100s" :initial `N/A` `nmcli -t -f SIGNAL,ACTIVE device wifi \
+    | awk -F':' '{if($2=="yes")print$1}'`)
+
+
+(defvar ismusicopenornot false)

@@ -1,0 +1,36 @@
+(defwindow musiccenter
+  :monitor 0
+  :exclusive "false"
+  :stacking "overlay"
+  :geometry (geometry :x "0"
+                      :y "0"
+                      :width "100px"
+                      :height "50px"
+                      :anchor "bottom center")
+  (box :orientation "h" :space-evenly "false"
+    (box :class "musicart" :style {musicartlink != "" ? `background-image: url("${musicartlink}"); min-height:84px; min-width: 84px; margin-right: 10px;` :  `min-height:0px; min-width: 0px; border:unset;`})
+    (box :class "musiccontrols" :orientation "v" :space-evenly "false" :spacing 5
+      (label :class "musictitle" :text {musicshort} :valign "start" :halign "start")
+      (box :orientation "h"
+          :class "musicscale"
+          :space-evenly false
+          :halign "center"
+        (box :class "label" {musicposition})
+        (scale :min 0
+              :max 101
+              :value musicpositionpercentage)
+        (box :class "label" {musiclength})
+      )
+      (box :class "musicbuttons" :orientation "h" :halign "center" :spacing 30
+        (button :class "musicbutton" :onclick "Previous &" "󰒮")
+        (button :class "musicbutton" :onclick "PlayPause &" {playingorpaused != "Paused" ? "󰏤" : "󰐊" })
+        (button :class "musicbutton" :onclick "Next &" "󰒭")))))
+
+(defwidget music []
+  (button :class "music"
+       :halign "center"
+       :style { music == "" ? "background-color:transparent" : ""}
+       :onclick {ismusicopenornot != false ? `eww open musiccenter --toggle --no-daemonize & eww update ismusicopenornot=false` : ismusicopenornot != true ? `eww open musiccenter --no-daemonize & eww update ismusicopenornot=true` : "Nothing is currently playing."}
+      {ismusicopenornot != false ? "󰅖" : music != "" ? "󰝚    ${music}" : ""}
+  )
+)

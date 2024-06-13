@@ -1,0 +1,155 @@
+$surface-darkgrey: #20252b;
+$surface-fg: #949494;
+$surface-lightgrey: #3d464e;
+$surface-grey: #2b3238;
+$surface-red: #f87070;
+
+* { all: unset; }
+
+.power-box {
+  font-family: Phosphor, Koulen;
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding: 1em;
+  color: rgba($surface-fg, 0.8);
+}
+
+.music {
+  font-family: JetBrains Mono;
+  background-color:$surface-darkgrey;
+  border-radius: 20px;
+  margin: 20px -190px;
+  button {
+    padding: 0.4em;
+    border-radius: 0.1em;
+    background-color: rgba($surface-darkgrey, 0.3);
+
+    &:hover {
+      transition: 200ms linear background-color, border-radius;
+      background-color: rgba($surface-lightgrey, 0.6);
+    }
+
+    &:first-child {
+      color: rgba($surface-red, 0.8);
+    }
+  }
+}
+
+.workspace-entry {
+  label {
+    font-size: 1.5em;
+  }
+  padding-left: 1.3em;
+  margin: 15px 0px;
+}
+
+.net-box,
+.bat-box,
+.tm-box {
+  label {
+    font-size: 2em;
+  }
+}
+
+.close-button {
+  font-size: 2em;
+  &:hover {
+    color: $surface-red;
+  }
+}
+
+.btns-box {
+  font-size: 2.5em;
+
+  button {
+    padding: 0.4em;
+    border-radius: 0.1em;
+    background-color: rgba($surface-darkgrey, 0.3);
+
+    &:hover {
+      transition: 200ms linear background-color, border-radius;
+      background-color: rgba($surface-lightgrey, 0.6);
+    }
+
+    &:first-child {
+      color: rgba($surface-red, 0.8);
+    }
+  }
+}
+
+.sep {
+  font-size: 1.5em;
+  padding-top: 0.15em;
+  padding-left: 0.2em;
+  padding-right: 0.2em;
+  color: $surface-lightgrey;
+}
+
+.sundial-lbl {
+  font-size: 1.5em;
+  font-weight: bold;
+  border-radius: 0.2em;
+  padding: 0.4em;
+  padding-bottom: 0.5em;
+  font-family: "Poiret One";
+}
+
+.musicart {
+  min-width: 100px;
+  min-height: 100px;
+  border-radius: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.musiccenter{
+  background-color: #111111;
+  padding: 10px 10px 5px 10px;
+  border-radius: 25px 25px 0px 0px;
+  color: $surface-grey;
+}
+
+.musiccontrols{
+  background-color: $surface-red;
+  min-width: 170px;
+  padding: 5px 20px;
+  border-radius: 20px;
+}
+
+.musicbutton{
+  margin-top: 0px;
+  font-size: 20px;
+}
+
+.musictitle{
+  margin-top: 5px;
+  font-size:15px;
+  font-weight: 600;
+}
+
+.musicscale scale trough highlight {
+  all: unset;
+  background-color: #d6d6d6;
+  color: white;
+  border-radius: 10px;
+  min-width: 10px;
+}
+
+.musicscale scale trough {
+  all: unset;
+  background-color: #1a1a1a;
+  border-radius: 50px;
+  min-height: 10px;
+  min-width: 140px;
+  margin: 0px 10px;
+}
+
+.musicscale label{
+  font-size: 13px;
+}
+
+.musicart{
+  border: 1.5px solid $surface-fg;
+  background-image: unset;
+}

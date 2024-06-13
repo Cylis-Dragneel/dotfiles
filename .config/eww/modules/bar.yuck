@@ -1,0 +1,13 @@
+(defwidget top []
+  (box :class "bar"
+    (centerbox :orientation "h"
+      (workspaces)
+      (systray)
+      (status))))
+
+(defwidget bar []
+  (centerbox :orientation "h"
+    (time)
+    (music)
+    (power)
+    ))
