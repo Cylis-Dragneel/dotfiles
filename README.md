@@ -39,7 +39,7 @@ First, clone the repository to your system
 
 ```
 $ cd
-$ git clone https://github.com/BlackPhoenix1747/dotfiles.git
+$ git clone https://github.com/Cylis-Dragneel/dotfiles.git
 $ cd dotfiles
 ```
 
