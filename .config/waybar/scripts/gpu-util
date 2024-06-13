@@ -1,0 +1,6 @@
+#!/bin/bash
+
+gpu_utilization=$(cat /sys/class/hwmon/hwmon0/device/gpu_busy_percent)
+
+echo "${gpu_utilization}%"
+

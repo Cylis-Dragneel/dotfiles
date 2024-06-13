@@ -1,0 +1,6 @@
+#!/bin/bash
+raw_temp=$(cat /sys/class/hwmon/hwmon0/temp1_input)
+gpu_temperature=$(($raw_temp/1000))
+
+echo "${gpu_temperature}°C"
+

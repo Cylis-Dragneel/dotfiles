@@ -1,0 +1,251 @@
+@define-color rosewater #f5e0dc;
+@define-color flamingo #f2cdcd;
+@define-color pink #f5c2e7;
+@define-color mauve #cba6f7;
+@define-color red #f38ba8;
+@define-color maroon #eba0ac;
+@define-color peach #fab387;
+@define-color yellow #f9e2af;
+@define-color green #a6e3a1;
+@define-color teal #94e2d5;
+@define-color sky #89dceb;
+@define-color sapphire #74c7ec;
+@define-color blue #89b4fa;
+@define-color lavender #b4befe;
+@define-color text #cdd6f4;
+@define-color subtext1 #bac2de;
+@define-color subtext0 #a6adc8;
+@define-color overlay2 #9399b2;
+@define-color overlay1 #7f849c;
+@define-color overlay0 #6c7086;
+@define-color surface2 #585b70;
+@define-color surface1 #45475a;
+@define-color surface0 #313244;
+@define-color base #1e1e2e;
+@define-color mantle #181825;
+@define-color crust #11111b;
+* {
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border-radius: 7px;
+  font-family: "JetBrains Mono Nerd Font";
+  font-size: 10pt;
+  font-weight: 700;
+  padding-bottom: 0px;
+}
+
+tooltip {
+  background: @crust;
+  border-radius: 7px;
+  border: 2px solid @border;
+}
+
+#window {
+	margin: 5px 5px 2px 5px;
+	padding-left: 10px;
+	padding-right: 7px;
+	border-radius: 7px;
+	border-bottom: 2px solid @crust;
+	border-right: 2px solid @crust;
+	background-color: @crust;
+	color: @lavender;
+}
+
+window#waybar.empty #window {
+	background-color: transparent;
+	border-bottom: none;
+	border-right: none;
+}
+
+window#waybar {
+  background-color:transparent;
+  color: @lavender;
+}
+
+/* Workspaces */
+@keyframes button_activate {
+	from { opacity: .3 }
+	to { opacity: 1.; }
+}
+
+#workspaces {
+  margin: 5px 5px 2px 5px;
+  border-radius: 7px;
+  padding: 1px;
+  background-color: @crust;
+  color: @crust;
+
+}
+
+#workspaces button {
+  margin: 5px 2px 5px 2px;
+  border-radius: 5px;
+  padding-left: 1px;
+  padding-right: 1px;
+  background-color: @crust;
+  color: @lavender;
+}
+
+#workspaces button.active {
+    background-color:@red;
+    color: @crust;
+    /*color: @crust;*/
+
+}
+
+#workspaces button.urgent {
+	color: @pink;
+}
+
+#workspaces button:hover {
+  border: solid transparent;
+}
+
+#custom-gpu-util {
+  margin: 5px 5px 2px 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 7px;
+  background-color: @crust;
+  color: @lavender;
+}
+
+#tray {
+  margin: 5px 5px 2px 5px;
+  border-radius: 7px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: @crust;
+  color: @lavender; 
+}
+
+#idle_inhibitor {
+  margin: 5px 5px 2px 5px;
+  padding-left: 10px;
+  padding-right: 12px;
+  border-radius: 7px;
+  background-color: @crust;
+  color: @lavender;
+}
+
+#network {
+  margin: 5px 5px 2px 5px;
+  padding-left: 10px;
+  padding-right: 12px;
+  border-radius: 7px;
+  background-color: @crust;
+  color: @lavender;
+}
+
+#network.linked {
+  color: @peach;
+}
+#network.disconnected,
+#network.disabled {
+  color: @red;
+}
+
+#custom-subs {
+	color: @crust;
+	margin: 5px 5px 2px 5px;
+    padding-left: 10px;
+    padding-right: 12px;
+    border-radius: 7px;
+	border-bottom: 2px solid @crust;
+	border-right: 2px solid @crust;
+background-color: @red;
+
+}
+
+
+#custom-cliphist {
+	color: @peach;
+	margin: 5px 5px 2px 5px;
+    padding-left: 10px;
+    padding-right: 12px;
+    border-radius: 7px;
+    background-color: @crust;
+
+}
+
+#custom-gpu-temp,
+#cpu,
+#memory,
+#custom-clipboard,
+#temperature,
+#custom-zypper,
+#custom-notification{
+  margin: 5px 5px 2px 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 7px;
+  color: @lavender;
+  background-color: @crust;
+}
+
+#custom-playerctl {
+  margin: 5px 5px 2px 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 7px;
+  color: @lavender;
+  background-color: @crust;
+}
+
+#battery,
+#backlight,
+#bluetooth,
+#pulseaudio {
+  margin-top: 5px;
+  margin-bottom: 2px;
+  color: @lavender;
+  background-color: @crust;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+
+}
+
+#battery,
+#bluetooth {
+	margin-left: 0px;
+	margin-right: 5px;
+	padding-left: 7.5px;
+	padding-right: 10px;
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+	border-top-right-radius: 7px;
+	border-bottom-right-radius: 7px;
+}
+
+#backlight,
+#pulseaudio {
+	margin-right: 0px;
+	margin-left: 5px;
+	padding-left: 10px;
+  	padding-right: 7.5px;
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+	border-top-left-radius: 7px;
+	border-bottom-left-radius: 7px;
+}
+
+#clock {
+  margin: 5px 5px 2px 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 7px;
+  color: @lavender;
+  background-color: @crust;
+}
+
+#mode {
+  margin: 5px 5px 2px 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 7px;
+  background-color: @crust;
+  color: @peach;
+}
