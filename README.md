@@ -7,23 +7,38 @@ These are my dotfiles
 Install the following:
 
 ### Git
-
+#### Ubuntu/Debian Based
 ```
-sudo apt install git
-sudo pacman -S git
+# apt install git
+```
+#### Arch Based
+```
+# pacman -S git
+```
+#### openSUSE Based
+```
+# zypper install git
 ```
 
 ### Stow
-
+#### Ubuntu/Debian Based
 ```
-sudo apt install stow
-sudo pacman -S stow
+# apt install stow
+```
+#### Arch Based
+```
+# pacman -S stow
+```
+#### openSUSE Based
+```
+# zypper install stow
 ```
 
 ## Installation
 First, clone the repository to your system
 
 ```
+$ cd
 $ git clone https://github.com/BlackPhoenix1747/dotfiles.git
 $ cd dotfiles
 ```
