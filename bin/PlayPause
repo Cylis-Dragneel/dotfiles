@@ -1,0 +1,23 @@
+#!/bin/bash
+
+PLAYER_FILE="/tmp/current_player.txt"
+
+# Check if the player file exists and read the current player from it
+  
+  # Check if spotify is playing audio
+  if playerctl status --player=spotify 2>/dev/null | grep -q "Playing"; then
+      PLAYER=spotify
+      echo "$PLAYER" > "$PLAYER_FILE"
+  # Check if chromium is playing audio
+  elif playerctl status --player=chromium 2>/dev/null | grep -q "Playing"; then
+      PLAYER=chromium
+      echo "$PLAYER" > "$PLAYER_FILE"
+  else
+    if [ -s "$PLAYER_FILE" ]; then
+      PLAYER=$(cat "$PLAYER_FILE")
+      rm /tmp/current_player.txt
+  fi
+fi
+
+# Execute play-pause command for the determined player
+playerctl play-pause --player=$PLAYER
