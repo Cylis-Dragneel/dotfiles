@@ -55,6 +55,9 @@ with lib;
           exec-once = playerctld daemon
           exec-once = mpd
           exec-once = mpdris2
+          exec-once = md.obsidian.Obsidian
+          exec-once = todoist-electron
+
           ${extraMonitorSettings}
           general {
             gaps_in = 6
@@ -84,8 +87,29 @@ with lib;
           windowrule = float, zoom
           windowrulev2 = stayfocused, title:^()$,class:^(steam)$
           windowrulev2 = minsize 1 1, title:^()$,class:^(steam)$
-          windowrulev2 = opacity 0.9 0.7, class:^(Brave)$
+          windowrulev2 = opacity 0.9 0.7, class:^(firefox)$
           windowrulev2 = opacity 0.9 0.7, class:^(thunar)$
+          #windowrulev2 = workspace 1,class:(Vivaldi-stable)
+          windowrulev2 = workspace 1,class:(firefox)
+          windowrulev2 = workspace 2,class:(kitty)
+          #windowrulev2 = workspace 3,class:(discord)
+          windowrulev2 = workspace 3,class:(vesktop)
+          windowrulev2 = workspace 4,class:(calibre-gui)
+          windowrulev2 = workspace 4,class:(org.kde.okular)
+          windowrulev2 = workspace 5,class:(mpv)
+          #windowrulev2 = workspace 8,class:(com.obsproject.Studio)
+          windowrulev2 = workspace 9,class:(spotube)
+          windowrulev2 = workspace 10,class:(Ryujinx)
+          windowrulev2 = workspace 10,class:(steam)
+          windowrulev2 = workspace 10,class:(lutris)
+          windowrulev2 = workspace special,class:(obsidian)
+          windowrulev2 = workspace special,class:(Todoist)
+          windowrulev2 = pin,title:(Picture in picture)
+          windowrulev2 = immediate,class:(steam_app_0)
+
+          windowrulev2 = move 386 1020,class:(Todoist)
+          windowrulev2 = move 1498 1020, class:(obsidian)
+
           gestures {
             workspace_swipe = true
             workspace_swipe_fingers = 3
