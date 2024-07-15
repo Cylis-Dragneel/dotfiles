@@ -136,6 +136,11 @@
   };
 
   programs = {
+    nix-ld = {
+      #enable = true;
+      libraries = with pkgs; [
+      ];
+    };
     firefox.enable = true;
     gamemode.enable = true;
     starship = {
