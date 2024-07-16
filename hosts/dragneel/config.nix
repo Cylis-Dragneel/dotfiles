@@ -50,29 +50,31 @@
     };
     plymouth.enable = true;
   };
+  
 
   # Styling Options
   stylix = {
     enable = true;
-    image = /home/cylis/Pictures/elden_ring-mohg.png;
-    # base16Scheme = {
-    #   base00 = "232136";
-    #   base01 = "2a273f";
-    #   base02 = "393552";
-    #   base03 = "6e6a86";
-    #   base04 = "908caa";
-    #   base05 = "e0def4";
-    #   base06 = "e0def4";
-    #   base07 = "56526e";
-    #   base08 = "eb6f92";
-    #   base09 = "f6c177";
-    #   base0A = "ea9a97";
-    #   base0B = "3e8fb0";
-    #   base0C = "9ccfd8";
-    #   base0D = "c4a7e7";
-    #   base0E = "f6c177";
-    #   base0F = "56526e";
-    # };
+    image = ../../config/wallpapers/japanese-purple.jpg;
+    #base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    base16Scheme = {
+      base00= "1e1e2e"; # base
+      base01= "181825"; # mantle
+      base02= "313244"; # surface0
+      base03= "45475a"; # surface1
+      base04= "585b70"; # surface2
+      base05= "cdd6f4"; # text
+      base06= "f5e0dc"; # rosewater
+      base07= "b4befe"; # lavender
+      base08= "f38ba8"; # red
+      base09= "fab387"; # peach
+      base0A= "f9e2af"; # yellow
+      base0B= "a6e3a1"; # green
+      base0C= "94e2d5"; # teal
+      base0D= "89b4fa"; # blue
+      base0E= "cba6f7"; # mauve
+      base0F= "f2cdcd"; # flamingo
+    };
     polarity = "dark";
     opacity.terminal = 0.8;
     cursor.package = pkgs.bibata-cursors;
@@ -326,6 +328,7 @@
     vivaldi
     nextcloud-client
     lazygit
+    xfce.tumbler
   ];
 
   fonts = {

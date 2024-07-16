@@ -51,7 +51,7 @@ with lib;
           exec-once = nm-applet --indicator
           exec-once = blueman-applet
           exec-once = lxqt-policykit-agent
-          exec-once = sleep 1.5 && swww img /home/${username}/Pictures/Wallpapers/red_green.png
+          exec-once = sleep 1.5 && swww img /home/${username}/Pictures/Wallpapers/japanese-purple.jpg
           exec-once = playerctld daemon
           exec-once = mpd
           exec-once = mpdris2
