@@ -194,7 +194,7 @@ with lib;
         }
         #workspaces {
           color: #${config.stylix.base16Scheme.base00};
-          background: #${config.stylix.base16Scheme.base02};
+          background: #${config.stylix.base16Scheme.base01};
           margin: 4px 4px;
           padding: 5px 5px;
           border-radius: 16px;
@@ -204,7 +204,7 @@ with lib;
           padding: 0px 5px;
           margin: 0px 3px;
           border-radius: 16px;
-          color: #${config.stylix.base16Scheme.base02};
+          color: #${config.stylix.base16Scheme.base00};
           background: linear-gradient(45deg, #${config.stylix.base16Scheme.base08}, #${config.stylix.base16Scheme.base0D});
           opacity: 0.5;
           transition: ${betterTransition};
@@ -241,12 +241,12 @@ with lib;
           margin: 4px 0px;
           margin-left: 7px;
           padding: 0px 18px;
-          background: #${config.stylix.base16Scheme.base04};
+          background: #${config.stylix.base16Scheme.base05};
           color: #${config.stylix.base16Scheme.base00};
           border-radius: 24px 10px 24px 10px;
         }
         #custom-startmenu {
-          color: #${config.stylix.base16Scheme.base0B};
+          color: #${config.stylix.base16Scheme.base0C};
           background: #${config.stylix.base16Scheme.base02};
           font-size: 28px;
           margin: 0px;
@@ -256,7 +256,7 @@ with lib;
         #custom-hyprbindings, #network, #battery,
         #custom-notification, #tray, #custom-exit {
           font-weight: bold;
-          background: #${config.stylix.base16Scheme.base0F};
+          background: #${config.stylix.base16Scheme.base07};
           color: #${config.stylix.base16Scheme.base00};
           margin: 4px 0px;
           margin-right: 7px;
