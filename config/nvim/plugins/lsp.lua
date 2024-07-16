@@ -1,8 +1,27 @@
 local lspconfig = require("lspconfig")
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-require'lspconfig'.pyright.setup{}
-require'lspconfig'.nil_ls.setup{}
-require'lspconfig'.marksman.setup{}
-require'lspconfig'.rust_analyzer.setup{}
-require'lspconfig'.yamlls.setup{}
-require'lspconfig'.bashls.setup{}
+lspconfig.html.setup({
+  capabilities = capabilities
+})
+lspconfig.lua_ls.setup({
+  capabilities = capabilities
+})
+lspconfig.pyright.setup({
+  capabilities = capabilities
+})
+lspconfig.nil_ls.setup({
+  capabilities = capabilities
+})
+lspconfig.marksman.setup({
+  capabilities = capabilities
+})
+lspconfig.rust_analyzer.setup({
+  capabilities = capabilities
+})
+lspconfig.yamlls.setup({
+  capabilities = capabilities
+})
+lspconfig.bashls.setup({
+  capabilities = capabilities
+})
