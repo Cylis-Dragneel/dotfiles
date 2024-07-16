@@ -160,7 +160,7 @@ in
         mouse = true;
         baseIndex = 1;
         prefix = "C-Space";
-        extraConfig = "unbind r \nbind r source-file ~/.config/tmux/tmux.conf \nset -g @resurrect-capture-pane-contents 'on'\nset -g @continuum-restore 'on'\nset-option -g status-position top \nbind -n M-H previous-window \nbind -n M-L next-window \nset-option -g @catppuccin_flavour 'mocha' \nset-option -g @resurrect-strategy-nvim 'session' \nbind-key -T copy-mode-vi v send-keys -X begin-selection \nbind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle \nbind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel ";
+        extraConfig = "unbind r \nbind r source-file ~/.config/tmux/tmux.conf \nset -g @resurrect-capture-pane-contents 'on'\nset -g @continuum-restore 'on'\nset-option -g status-position top \nbind-key -n C-l send-keys 'C-l' \nbind-key -n C-j previous-window \nbind-key -n C-k next-window \nbind-key -n 'M-h' 'select-pane -L'\nbind-key -n 'M-j' 'select-pane -D'\nbind-key -n 'M-k' 'select-pane -U'\nbind-key -n 'M-l' 'select-pane -R'\nset-option -g @catppuccin_flavour 'mocha' \nset-option -g @resurrect-strategy-nvim 'session' \nbind-key -T copy-mode-vi v send-keys -X begin-selection \nbind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle \nbind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel ";
         plugins = [ pkgs.tmuxPlugins.resurrect pkgs.tmuxPlugins.catppuccin pkgs.tmuxPlugins.sensible pkgs.tmuxPlugins.vim-tmux-navigator pkgs.tmuxPlugins.yank pkgs.tmuxPlugins.continuum];
     };
     oh-my-posh = {
