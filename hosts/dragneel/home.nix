@@ -244,6 +244,7 @@ in
         la = "eza -lah --icons --grid --group-directories-first";
         host = "nvim ~/zaneyos/hosts/dragneel/";
         config = "nvim ~/zaneyos/config/";
+        mp = "ncmpcpp";
       };
       defaultKeymap = "emacs";
       history = {
@@ -260,6 +261,11 @@ in
       initExtra = ''
         fastfetch
         eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/catppuccin.omp.json)"
+        zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+        zstyle ':completion:*' menu no
+        zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls $realpath'
+        zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls $realpath'
+        eval "$(fzf --zsh)"
       '';
       plugins = [
         {
