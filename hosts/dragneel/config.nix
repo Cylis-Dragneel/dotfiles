@@ -329,6 +329,7 @@
     nextcloud-client
     lazygit
     xfce.tumbler
+    luajitPackages.luarocks
   ];
 
   fonts = {

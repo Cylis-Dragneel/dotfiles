@@ -28,8 +28,11 @@ in
         marksman
       ];
       plugins = with pkgs.vimPlugins; [
+        oil-nvim
+        catppuccin-nvim
         alpha-nvim
         auto-session
+        which-key-nvim
         bufferline-nvim
         dressing-nvim
         indent-blankline-nvim
@@ -40,7 +43,6 @@ in
         nvim-autopairs
         nvim-web-devicons
         nvim-cmp
-        nvim-surround
         nvim-lspconfig
         cmp-nvim-lsp
         cmp-buffer
@@ -51,7 +53,7 @@ in
         comment-nvim
         nvim-ts-context-commentstring
         plenary-nvim
-        neodev-nvim
+        lazydev-nvim
         luasnip
         telescope-nvim
         todo-comments-nvim
@@ -77,8 +79,8 @@ in
         ${builtins.readFile ./nvim/plugins/todo-comments.lua}
         ${builtins.readFile ./nvim/plugins/treesitter.lua}
         ${builtins.readFile ./nvim/plugins/fine-cmdline.lua}
+        ${builtins.readFile ./nvim/plugins/bufferline.lua}
         require("ibl").setup()
-        require("bufferline").setup{}
         require("lualine").setup({
           icons_enabled = true,
         })
