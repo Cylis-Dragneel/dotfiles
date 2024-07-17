@@ -26,6 +26,7 @@ in
         yaml-language-server
         pyright
         marksman
+        bashdb
       ];
       plugins = with pkgs.vimPlugins; [
         oil-nvim
@@ -60,6 +61,8 @@ in
         nvim-tree-lua
         telescope-fzf-native-nvim
         vim-tmux-navigator
+        nvim-dap
+        nvim-dap-ui
       ];
       extraConfig = ''
         set noemoji
@@ -80,6 +83,7 @@ in
         ${builtins.readFile ./nvim/plugins/treesitter.lua}
         ${builtins.readFile ./nvim/plugins/fine-cmdline.lua}
         ${builtins.readFile ./nvim/plugins/bufferline.lua}
+        ${builtins.readFile ./nvim/plugins/debugging.lua}
         require("ibl").setup()
         require("lualine").setup({
           icons_enabled = true,
