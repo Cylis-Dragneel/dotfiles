@@ -330,6 +330,7 @@
     lazygit
     xfce.tumbler
     luajitPackages.luarocks
+    cliphist
   ];
 
   fonts = {

@@ -58,6 +58,9 @@ with lib;
           exec-once = md.obsidian.Obsidian
           exec-once = todoist-electron
           exec-once = nextcloud
+          exec-once = wl-paste --type text --watch cliphist store
+          exec-once = wl-paste --type image --watch cliphist store
+
 
           ${extraMonitorSettings}
           general {
@@ -95,16 +98,16 @@ with lib;
           windowrulev2 = workspace 2,class:(kitty)
           #windowrulev2 = workspace 3,class:(discord)
           windowrulev2 = workspace 3,class:(vesktop)
-          windowrulev2 = workspace 4,class:(calibre-gui)
-          windowrulev2 = workspace 4,class:(org.kde.okular)
+          windowrulev2 = workspace 9,class:(calibre-gui)
+          windowrulev2 = workspace 9,class:(org.kde.okular)
           windowrulev2 = workspace 5,class:(mpv)
           #windowrulev2 = workspace 8,class:(com.obsproject.Studio)
-          windowrulev2 = workspace 9,class:(spotube)
+          windowrulev2 = workspace 4,class:(spotube)
           windowrulev2 = workspace 10,class:(Ryujinx)
           windowrulev2 = workspace 10,class:(steam)
           windowrulev2 = workspace 10,class:(lutris)
-          windowrulev2 = workspace special,class:(obsidian)
-          windowrulev2 = workspace special,class:(Todoist)
+          windowrulev2 = float, workspace special,class:(obsidian)
+          windowrulev2 = float, workspace special,class:(Todoist)
           windowrulev2 = pin,title:(Picture in picture)
           windowrulev2 = immediate,class:(steam_app_0)
 
@@ -167,14 +170,15 @@ with lib;
           bind = ${modifier},W,exec,${browser}
           bind = ${modifier},E,exec,emopicker9000
           bind = ${modifier},S,exec,screenshootin
-          bind = ${modifier},D,exec,dev.vencord.Vesktop
+          bind = ${modifier},D,exec,flatpak run dev.vencord.Vesktop
           bind = ${modifier},O,exec,md.obsidian.Obsidian
           bind = ${modifier},C,exec,hyprpicker -a
-          #bind = ${modifier},G,exec,gimp
+          bind = ${modifier},G,exec,flatpak run net.lutris.Lutris 
           #bind = ${modifier}SHIFT,G,exec,godot4
           bind = ${modifier},N,exec,thunar
           bind = ${modifier},M,exec,spotube
           bind = ,F10,exec,jerry --rofi
+          bind = ${modifier},V,exec,cliphist list | rofi -dmenu | cliphist decode | wl-copy
           bind = ${modifier},Q,killactive,
           bind = ${modifier},P,pseudo,
           bind = ${modifier}SHIFT,I,togglesplit,

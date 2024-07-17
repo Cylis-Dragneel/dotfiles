@@ -65,7 +65,7 @@
               "dummy"
               "mode-switcher"
             ];
-            background-image = mkLiteral ''url("~/Pictures/Wallpapers/beautifulmountainscape.jpg", width)'';
+            background-image = mkLiteral ''url("~/Pictures/Wallpapers/japanese-purple.jpg", width)'';
           };
           "entry" = {
             enabled = true;
