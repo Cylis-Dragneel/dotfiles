@@ -127,10 +127,6 @@ in
           after_sleep_cmd = "hyprctl dispatch dpms on";
           ignore_dbus_inhibit = false;
           lock_cmd = "hyprlock";
-          starship = {
-            enable = true;
-            package = pkgs.starship;
-          };
         };
         listener = [
           {
@@ -174,6 +170,10 @@ in
         vim_keys = true;
       };
     };
+    starship = {
+            enable = false;
+            package = pkgs.starship;
+          };
     kitty = {
       enable = true;
       package = pkgs.kitty;

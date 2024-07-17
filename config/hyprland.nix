@@ -57,6 +57,7 @@ with lib;
           exec-once = mpdris2
           exec-once = md.obsidian.Obsidian
           exec-once = todoist-electron
+          exec-once = nextcloud
 
           ${extraMonitorSettings}
           general {
@@ -166,7 +167,7 @@ with lib;
           bind = ${modifier},W,exec,${browser}
           bind = ${modifier},E,exec,emopicker9000
           bind = ${modifier},S,exec,screenshootin
-          bind = ${modifier},D,exec,com.discordapp.Discord
+          bind = ${modifier},D,exec,dev.vencord.Vesktop
           bind = ${modifier},O,exec,md.obsidian.Obsidian
           bind = ${modifier},C,exec,hyprpicker -a
           #bind = ${modifier},G,exec,gimp
