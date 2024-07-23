@@ -7,6 +7,7 @@ opt.softtabstop = 2
 opt.expandtab = true
 opt.autoindent = true
 opt.wrap = false
+vim.o.whichwrap = 'b,s,<,>,[,],h,l'
 opt.ignorecase = true
 opt.smartcase = true
 opt.termguicolors = true
@@ -19,4 +20,9 @@ opt.clipboard:append("unnamedplus")
 opt.splitright = true
 opt.splitbelow = true
 opt.swapfile = false
+opt.hidden = true
+opt.hlsearch = false
+vim.o.scrolloff = 3
+vim.o.sidescrolloff = 5
 vim.g.mapleader = " "
+

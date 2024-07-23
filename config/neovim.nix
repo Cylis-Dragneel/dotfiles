@@ -84,6 +84,7 @@ in
         ${builtins.readFile ./nvim/plugins/fine-cmdline.lua}
         ${builtins.readFile ./nvim/plugins/bufferline.lua}
         ${builtins.readFile ./nvim/plugins/debugging.lua}
+        ${builtins.readFile ./nvim/plugins/whichkey.lua}
         require("ibl").setup()
         require("lualine").setup({
           icons_enabled = true,
