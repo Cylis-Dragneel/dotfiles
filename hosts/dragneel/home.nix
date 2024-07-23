@@ -37,6 +37,10 @@ in
     source = ../../config/fastfetch;
     recursive = true;
   };
+  home.file.".config/awesome" = {
+    source = ../../config/awesome;
+    recursive = true;
+  };
   home.file.".config/wlogout/icons" = {
     source = ../../config/wlogout;
     recursive = true;
@@ -70,6 +74,14 @@ in
     };
   };
 
+  xsession = {
+    windowManager = {
+      awesome = {
+        enable = true;
+      };
+    };
+  };
+
   dconf.settings = {
     "org/virt-manager/virt-manager/connections" = {
       autoconnect = [ "qemu:///system" ];
@@ -81,6 +93,7 @@ in
   stylix.targets.waybar.enable = false;
   stylix.targets.rofi.enable = false;
   stylix.targets.hyprland.enable = false;
+  stylix.targets.kde.enable = false;
   gtk = {
     iconTheme = {
       name = "Papirus-Dark";
@@ -144,6 +157,17 @@ in
   };
 
   programs = {
+    wezterm = {
+        enable = true;
+        enableZshIntegration = true;
+        extraConfig = 
+        ''
+        return {
+          hide_tab_bar_if_only_one_tab = true,
+          enable_wayland = false
+         }
+           '';
+    };
     zoxide = {
         enable = true;
         enableZshIntegration = true;
@@ -194,8 +218,8 @@ in
       enable = true;
       enableCompletion = true;
       profileExtra = ''
-        #if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
-        #  exec Hyprland
+        #if [ -z "$DISPLAY" ]; then
+        #  exec awesome
         #fi
       '';
       initExtra = ''
@@ -245,6 +269,11 @@ in
         host = "nvim ~/zaneyos/hosts/dragneel/";
         config = "nvim ~/zaneyos/config/";
         mp = "ncmpcpp";
+        py-server = "python -m http.server 8040";
+        py-virt = "source .venv/bin/activate";
+        py-virtc = "python3 -m venv .venv";
+        zsh-e = "v ~/.zshrc";
+        reload = "source ~/.zshrc";
       };
       defaultKeymap = "emacs";
       history = {
@@ -254,13 +283,13 @@ in
         size = 10000;
       };
       profileExtra = ''
-        #if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
-        #  exec Hyprland
+        #if [ -z "$DISPLAY" ]; then
+        #  exec awesome
         #fi
       '';
       initExtra = ''
         fastfetch
-        eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/catppuccin.omp.json)"
+        eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/dracula.omp.json)"
         zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
         zstyle ':completion:*' menu no
         zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls $realpath'

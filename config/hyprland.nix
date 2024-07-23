@@ -53,8 +53,7 @@ with lib;
           exec-once = lxqt-policykit-agent
           exec-once = sleep 1.5 && swww img /home/${username}/Pictures/Wallpapers/japanese-purple.jpg
           exec-once = playerctld daemon
-          exec-once = mpd
-          exec-once = mpdris2
+          exec-once = mpDris2
           exec-once = md.obsidian.Obsidian
           exec-once = todoist-electron
           exec-once = nextcloud
@@ -110,9 +109,6 @@ with lib;
           windowrulev2 = float, workspace special,class:(Todoist)
           windowrulev2 = pin,title:(Picture in picture)
           windowrulev2 = immediate,class:(steam_app_0)
-
-          windowrulev2 = move 386 1020,class:(Todoist)
-          windowrulev2 = move 1498 1020, class:(obsidian)
 
           gestures {
             workspace_swipe = true

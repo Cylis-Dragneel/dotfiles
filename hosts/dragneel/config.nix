@@ -319,18 +319,27 @@
     todoist-electron
     planify
     zed-editor
-    mpd
     ncmpcpp
-    mpdris2
-    nixd
+    #mpdris2
+    #nixd
     tmuxifier
     ghc
     vivaldi
+    vivaldi-ffmpeg-codecs
     nextcloud-client
     lazygit
     xfce.tumbler
     luajitPackages.luarocks
     cliphist
+    scc
+    mpc-cli
+    python3
+    cava
+    cavalier
+    tym
+    foot
+    love_0_10
+    xorg.xprop
   ];
 
   fonts = {
@@ -366,15 +375,31 @@
   };
 
   # Services to start
+  systemd.services.mpd.environment = {
+      XDG_RUNTIME_DIR = "/run/user/${toString config.users.users.${username}.uid}"; # User-id must match above user. MPD will look inside this directory for the PipeWire socket.
+  };
   services = {
+    mpd = {
+      enable = false;
+      musicDirectory = "/home/${username}/Music/";
+      dbFile = "/home/${username}/.config/mpd/mpd.db";
+      extraConfig = ''
+      audio_output {
+        type "pipewire"
+        name "My PipeWire Output"
+      }
+    '';
+      user = "${username}";
+    };
     tailscale.enable = true;
     xserver = {
-      enable = false;
+      enable = true;
       xkb = {
         layout = "us";
         variant = "";
       };
     };
+    #desktopManager.plasma6.enable = true;
     greetd = {
       enable = true;
       vt = 3;
@@ -386,6 +411,7 @@
           # with such a vendor-no-locking script, we can switch to another wayland compositor without modifying greetd's config here.
           # command = "$HOME/.wayland-session"; # start a wayland session directly without a login manager
           command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland"; # start Hyprland with a TUI login manager
+          #command = "${pkgs.greetd.tuigreet}/bin/tuigreet --sessions ${config.services.xserver.displayManager.sessionData.desktops}/share/xsessions:${config.services.xserver.displayManager.sessionData.desktops}/share/wayland-sessions --remember --remember-user-session";
         };
       };
     };
@@ -448,7 +474,6 @@
   services.blueman.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = false;
   hardware.pulseaudio.enable = false;
 
   # Security / Polkit
