@@ -78,6 +78,7 @@ in
     windowManager = {
       awesome = {
         enable = true;
+        package = pkgs.awesomeGit;
       };
     };
   };

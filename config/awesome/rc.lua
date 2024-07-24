@@ -12,11 +12,11 @@ It's best to put this at the start of the file.
 --]]
 
 naughty.connect_signal("request::display_error",function (message,startup)
-  naughty.notification {
-    urgency = "critical",
-    title = "An Error Occured" .. (startup and " during startup." or "."),
-    message = message
-  }
+      naughty.notification {
+        urgency = "critical",
+        title = "Error" .. (startup and " during startup!" or "!"),
+        message = message
+      }
 end)
 
 -- Set Variables
@@ -26,7 +26,7 @@ modkey = "Mod4"
 -- Load Modules
 require("binds")
 require("rules")
-require("theme")
+require("theme.init")
 
 --[[
 Layouts:

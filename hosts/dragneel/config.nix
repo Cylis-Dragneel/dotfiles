@@ -340,6 +340,20 @@
     foot
     love_0_10
     xorg.xprop
+    xorg.xinit
+    flameshot
+    python312Packages.cmake
+    luajitPackages.lgi
+    luajit
+    xorg.xorgproto
+    xorg.libxcb
+    xcb-util-cursor
+    xorg.xcbutil
+    xorg.xcbutilkeysyms
+    cairo
+    pango
+    glib
+    haskellPackages.gio
   ];
 
   fonts = {
@@ -394,6 +408,7 @@
     tailscale.enable = true;
     xserver = {
       enable = true;
+      displayManager.startx.enable = true;
       xkb = {
         layout = "us";
         variant = "";
