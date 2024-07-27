@@ -17,6 +17,7 @@
     ../../modules/intel-drivers.nix
     ../../modules/vm-guest-services.nix
     ../../modules/local-hardware-clock.nix
+    ../../modules/overlays.nix
   ];
 
   boot = {
@@ -339,9 +340,17 @@
     tym
     foot
     love_0_10
+    xorg.xev
+    wev
+    scrot
+    pamixer
+    scrcpy
+    android-tools
+    gimp
+    inkscape
+    #Awesome related
     xorg.xprop
     xorg.xinit
-    flameshot
     python312Packages.cmake
     luajitPackages.lgi
     luajit
@@ -354,6 +363,7 @@
     pango
     glib
     haskellPackages.gio
+    xclip
   ];
 
   fonts = {
@@ -410,7 +420,8 @@
       enable = true;
       displayManager.startx.enable = true;
       xkb = {
-        layout = "us";
+        layout = "us,jp";
+        options = "grp:win_space_toggle";
         variant = "";
       };
     };

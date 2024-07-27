@@ -4,6 +4,7 @@
   inputs = {
     jerry.url = "github:justchokingaround/jerry";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     stylix.url = "github:danth/stylix";
@@ -20,7 +21,7 @@
   };
 
   outputs =
-    { nixpkgs, home-manager, ... }@inputs:
+    { nixpkgs, home-manager, nixpkgs-stable, ... }@inputs:
     let
       system = "x86_64-linux";
       host = "dragneel";
@@ -34,6 +35,7 @@
             inherit inputs;
             inherit username;
             inherit host;
+            
           };
           modules = [
             ./hosts/${host}/config.nix
@@ -44,6 +46,13 @@
                 inherit username;
                 inherit inputs;
                 inherit host;
+                pkgs-stable = import nixpkgs-stable {
+                  inherit system;
+                  inherit inputs;
+                  inherit username;
+                  inherit host;
+                  config.allowUnfree = true;
+                };
               };
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;

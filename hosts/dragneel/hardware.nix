@@ -7,26 +7,6 @@
   imports =
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
-  nixpkgs.overlays = [
-    (final: prev: {
-      awesomeGit = prev.awesome.overrideAttrs (old: rec {
-        pname = "awesomeGit";
-        src = prev.fetchFromGitHub {
-          owner = "awesomeWM";
-          repo = "awesome";
-          rev = "master";
-          hash = "sha256-uaskBbnX8NgxrprI4UbPfb5cRqdRsJZv0YXXshfsxFU=";
-        };
-        patches = [];
-
-          
-        postPatch = ''
-          patchShebangs tests/examples/_postprocess.lua
-        '';
-      });
-    }
-    )
-  ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];

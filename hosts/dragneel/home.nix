@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-stable,
   username,
   host,
   inputs,
@@ -37,10 +38,10 @@ in
     source = ../../config/fastfetch;
     recursive = true;
   };
-  home.file.".config/awesome" = {
-    source = ../../config/awesome;
-    recursive = true;
-  };
+    #home.file.".config/awesome" = {
+    #source = ../../config/awesome;
+    #recursive = true;
+  #};
   home.file.".config/wlogout/icons" = {
     source = ../../config/wlogout;
     recursive = true;
@@ -65,7 +66,8 @@ in
     userName = "${gitUsername}";
     userEmail = "${gitEmail}";
   };
-
+  i18n.inputMethod.enabled = "fcitx5";
+  i18n.inputMethod.fcitx5.addons = with pkgs; [ fcitx5-configtool fcitx5-mozc ];
   # Create XDG Dirs
   xdg = {
     userDirs = {
@@ -135,6 +137,28 @@ in
   ];
 
   services = {
+    flameshot = {
+      enable = true;
+      package = pkgs-stable.flameshot;
+    };
+    picom = {
+      enable = true;
+      activeOpacity = 1.0;
+      inactiveOpacity = 1.0;
+      shadow = true;
+      shadowOffsets = [ (-25) (-25) ];
+      shadowOpacity = 0.5;
+      fade = false;
+      fadeDelta = 3;
+      fadeSteps = [
+        0.03
+        0.03
+      ];
+      settings = {
+        shadow-radius = 25;
+        corner-radius = 15;
+      };
+    };
     hypridle = {
       settings = {
         general = {
@@ -181,8 +205,16 @@ in
         mouse = true;
         baseIndex = 1;
         prefix = "C-Space";
-        extraConfig = "unbind r \nbind r source-file ~/.config/tmux/tmux.conf \nset -g @resurrect-capture-pane-contents 'on'\nset -g @continuum-restore 'on'\nset-option -g status-position top \nbind-key -n C-l send-keys 'C-l' \nbind-key -n C-j previous-window \nbind-key -n C-k next-window \nbind-key -n 'M-h' 'select-pane -L'\nbind-key -n 'M-j' 'select-pane -D'\nbind-key -n 'M-k' 'select-pane -U'\nbind-key -n 'M-l' 'select-pane -R'\nset-option -g @catppuccin_flavour 'mocha' \nset-option -g @resurrect-strategy-nvim 'session' \nbind-key -T copy-mode-vi v send-keys -X begin-selection \nbind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle \nbind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel ";
-        plugins = [ pkgs.tmuxPlugins.resurrect pkgs.tmuxPlugins.catppuccin pkgs.tmuxPlugins.sensible pkgs.tmuxPlugins.vim-tmux-navigator pkgs.tmuxPlugins.yank pkgs.tmuxPlugins.continuum];
+        extraConfig = "unbind r \nbind r source-file ~/.config/tmux/tmux.conf \nset-option -sa terminal-overrides ',xterm*:Tc' \nset -g @resurrect-capture-pane-contents 'on'\nset -g @continuum-restore 'on'\nset-option -g status-position top \nbind-key -n C-l send-keys 'C-l' \nbind-key -n C-j previous-window \nbind-key -n C-k next-window \nbind-key -n 'M-h' 'select-pane -L'\nbind-key -n 'M-j' 'select-pane -D'\nbind-key -n 'M-k' 'select-pane -U'\nbind-key -n 'M-l' 'select-pane -R'\nset-option -g @catppuccin_flavour 'mocha' \nset-option -g @resurrect-strategy-nvim 'session' \nbind-key -T copy-mode-vi v send-keys -X begin-selection \nbind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle \nbind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel ";
+        plugins = [ 
+          pkgs.tmuxPlugins.resurrect 
+          pkgs.tmuxPlugins.catppuccin 
+          pkgs.tmuxPlugins.sensible 
+          pkgs.tmuxPlugins.vim-tmux-navigator 
+          pkgs.tmuxPlugins.yank 
+          pkgs.tmuxPlugins.continuum
+          pkgs.tmuxPlugins.weather
+        ];
     };
     oh-my-posh = {
       enable = true;
@@ -275,6 +307,8 @@ in
         py-virtc = "python3 -m venv .venv";
         zsh-e = "v ~/.zshrc";
         reload = "source ~/.zshrc";
+        nix-dev = "tmuxifier load-session nix";
+        awm = "tmuxifier load-session awm";
       };
       defaultKeymap = "emacs";
       history = {
