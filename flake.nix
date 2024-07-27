@@ -35,7 +35,6 @@
             inherit inputs;
             inherit username;
             inherit host;
-            
           };
           modules = [
             ./hosts/${host}/config.nix

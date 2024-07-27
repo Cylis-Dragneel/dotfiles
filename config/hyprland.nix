@@ -88,6 +88,7 @@ with lib;
           windowrule = float, swayimg|vlc|Viewnior|pavucontrol
           windowrule = float, nwg-look|qt5ct
           windowrule = float, zoom
+          windowrulev2 = float,class:(xdg-desktop-portal-gtk)
           windowrulev2 = stayfocused, title:^()$,class:^(steam)$
           windowrulev2 = minsize 1 1, title:^()$,class:^(steam)$
           windowrulev2 = opacity 0.9 0.7, class:^(firefox)$

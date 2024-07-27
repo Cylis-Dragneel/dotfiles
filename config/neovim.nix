@@ -31,6 +31,7 @@ in
       plugins = with pkgs.vimPlugins; [
         oil-nvim
         catppuccin-nvim
+        nvim-colorizer-lua
         alpha-nvim
         auto-session
         which-key-nvim
@@ -86,6 +87,7 @@ in
         ${builtins.readFile ./nvim/plugins/debugging.lua}
         ${builtins.readFile ./nvim/plugins/whichkey.lua}
         require("ibl").setup()
+        require("colorizer").setup()
         require("lualine").setup({
           icons_enabled = true,
         })
