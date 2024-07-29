@@ -29,6 +29,7 @@ in
         bashdb
       ];
       plugins = with pkgs.vimPlugins; [
+        vim-carbon-now-sh
         oil-nvim
         catppuccin-nvim
         nvim-colorizer-lua
@@ -86,6 +87,7 @@ in
         ${builtins.readFile ./nvim/plugins/bufferline.lua}
         ${builtins.readFile ./nvim/plugins/debugging.lua}
         ${builtins.readFile ./nvim/plugins/whichkey.lua}
+        ${builtins.readFile ./nvim/plugins/carbon.lua}
         require("ibl").setup()
         require("colorizer").setup()
         require("lualine").setup({
