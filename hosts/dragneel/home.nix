@@ -137,6 +137,23 @@ in
   ];
 
   services = {
+    mpd = {
+      enable = true;
+      musicDirectory = "/home/cylis/Music/";
+      extraConfig = ''
+      audio_output {
+        type "pipewire"
+        name "My PipeWire Output"
+      }
+    '';
+    };
+    mpd-discord-rpc = {
+      enable = true;
+    };
+    mpd-mpris = {
+      enable = true;
+      mpd.port = 6600;
+    };
     flameshot = {
       enable = true;
       package = pkgs-stable.flameshot;
@@ -182,6 +199,11 @@ in
   };
 
   programs = {
+    ncmpcpp = {
+      enable = true;
+      package =  pkgs.ncmpcpp.override { visualizerSupport = true; };
+      mpdMusicDir = "/home/cylis/Music/";
+    };
     wezterm = {
         enable = true;
         enableZshIntegration = true;
@@ -204,7 +226,7 @@ in
         keyMode = "vi";
         mouse = true;
         baseIndex = 1;
-        prefix = "C-Space";
+        prefix = "C-s";
         extraConfig = "unbind r \nbind r source-file ~/.config/tmux/tmux.conf \nset-option -sa terminal-overrides ',xterm*:Tc' \nset -g @resurrect-capture-pane-contents 'on'\nset -g @continuum-restore 'on'\nset-option -g status-position top \nbind-key -n C-l send-keys 'C-l' \nbind-key -n C-j previous-window \nbind-key -n C-k next-window \nbind-key -n 'M-h' 'select-pane -L'\nbind-key -n 'M-j' 'select-pane -D'\nbind-key -n 'M-k' 'select-pane -U'\nbind-key -n 'M-l' 'select-pane -R'\nset-option -g @catppuccin_flavour 'mocha' \nset-option -g @resurrect-strategy-nvim 'session' \nbind-key -T copy-mode-vi v send-keys -X begin-selection \nbind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle \nbind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel ";
         plugins = [ 
           pkgs.tmuxPlugins.resurrect 

@@ -20,6 +20,7 @@ in
         "scanner"
         "lp"
         "gamemode"
+        "uinput"
       ];
       shell = pkgs.zsh;
       #shell = pkgs.bash;

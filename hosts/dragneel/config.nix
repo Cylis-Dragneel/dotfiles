@@ -320,7 +320,6 @@
     todoist-electron
     planify
     zed-editor
-    ncmpcpp
     #mpdris2
     #nixd
     tmuxifier
@@ -348,6 +347,15 @@
     android-tools
     gimp
     inkscape
+    hilbish
+    go
+    go-task
+    vesktop
+    obsidian
+    gitleaks
+    nvtopPackages.amd
+    scriptisto
+    amberol
     #Awesome related
     xorg.xprop
     xorg.xinit
@@ -400,20 +408,31 @@
 
   # Services to start
   systemd.services.mpd.environment = {
-      XDG_RUNTIME_DIR = "/run/user/${toString config.users.users.${username}.uid}"; # User-id must match above user. MPD will look inside this directory for the PipeWire socket.
+      XDG_RUNTIME_DIR = "/run/user/1000";
   };
   services = {
-    mpd = {
-      enable = false;
-      musicDirectory = "/home/${username}/Music/";
-      dbFile = "/home/${username}/.config/mpd/mpd.db";
-      extraConfig = ''
-      audio_output {
-        type "pipewire"
-        name "My PipeWire Output"
-      }
-    '';
-      user = "${username}";
+    kanata = {
+      enable = true;
+      keyboards = {
+        main = {
+        config = ''
+  (defsrc
+    caps 
+          lalt
+  )
+  
+  (defalias 
+    ;; tap caps lock as caps lock, hold caps lock as left control
+    caps (tap-hold 200 200 caps lctl)
+    lalt (tap-hold 200 200 lalt lmet)
+  )
+  (deflayer base
+    @caps 
+          @lalt
+  )
+'';
+        };
+      };
     };
     tailscale.enable = true;
     xserver = {
@@ -491,8 +510,8 @@
   };
 
   # Extra Logitech Support
-  hardware.logitech.wireless.enable = true;
-  hardware.logitech.wireless.enableGraphical = true;
+  hardware.logitech.wireless.enable = false;
+  hardware.logitech.wireless.enableGraphical = false;
 
   # Bluetooth Support
   hardware.bluetooth.enable = true;
