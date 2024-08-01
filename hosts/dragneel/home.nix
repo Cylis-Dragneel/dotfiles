@@ -137,16 +137,6 @@ in
   ];
 
   services = {
-    mpd = {
-      enable = true;
-      musicDirectory = "/home/cylis/Music/";
-      extraConfig = ''
-      audio_output {
-        type "pipewire"
-        name "My PipeWire Output"
-      }
-    '';
-    };
     mpd-discord-rpc = {
       enable = true;
     };
@@ -173,7 +163,6 @@ in
       ];
       settings = {
         shadow-radius = 25;
-        corner-radius = 15;
       };
     };
     hypridle = {
@@ -199,6 +188,31 @@ in
   };
 
   programs = {
+    lf = {
+      enable = true;
+      previewer = {
+        keybinding = "i";
+        source = "${pkgs.ctpv}/bin/cptv";
+      };
+      extraConfig = ''
+        set shell zsh
+        set mouse
+        set ratios 2:5:7
+        set info size
+        set period 1
+        set scroll off 10
+        &ctpv -s $id 
+        cmd on-quit %ctpv -e $id
+        set cleaner $ctpvclear
+        set cursorpreviewfmt "\033[7;2m"
+        map <enter> shell
+        map p : paste;clear 
+        map <esc> :{{unselect; clear;}}
+        map a :push %mkdir<space>
+        cmd drag dragon $fx
+        map M :drag
+      '';
+    };
     ncmpcpp = {
       enable = true;
       package =  pkgs.ncmpcpp.override { visualizerSupport = true; };
@@ -210,6 +224,14 @@ in
         extraConfig = 
         ''
         return {
+          font = wezterm.font_with_fallback {
+              "azuki",
+              "gohufont",
+              "koishi",
+              "fairfax",
+              "JetBrains Mono Nerd Font Mono",
+          },
+          font_size = 12,
           hide_tab_bar_if_only_one_tab = true,
           enable_wayland = false
          }
