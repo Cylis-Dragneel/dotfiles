@@ -42,6 +42,10 @@ in
     #source = ../../config/awesome;
     #recursive = true;
   #};
+  # home.file.".config/emacs" = {
+  #   source = ../../config/emacs;
+  #   recursive = true;
+  # };
   home.file.".config/wlogout/icons" = {
     source = ../../config/wlogout;
     recursive = true;
@@ -138,7 +142,7 @@ in
 
   services = {
     mpd-discord-rpc = {
-      enable = true;
+      enable = false;
     };
     mpd-mpris = {
       enable = true;
@@ -221,20 +225,19 @@ in
     wezterm = {
         enable = true;
         enableZshIntegration = true;
-        extraConfig = 
-        ''
+        extraConfig =''
         return {
           font = wezterm.font_with_fallback {
-              "azuki",
-              "gohufont",
-              "koishi",
-              "fairfax",
-              "JetBrains Mono Nerd Font Mono",
+                "CozetteHiDpi",
+                "koishi",
+                "fairfax",
+                "JetBrains Mono Nerd Font Mono",
           },
-          font_size = 12,
+          font_size = 14.0,
+          color_scheme = "Catppuccin Mocha",
           hide_tab_bar_if_only_one_tab = true,
-          enable_wayland = false
-         }
+          enable_wayland = false,
+        }
            '';
     };
     zoxide = {

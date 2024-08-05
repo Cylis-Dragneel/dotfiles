@@ -29,5 +29,10 @@
       });
     }
     )
+    (import (builtins.fetchGit {
+      url = "https://github.com/nix-community/emacs-overlay.git";
+      ref = "master";
+      rev = "e67c0cec68f7df91c79ab06b97e2cc24023665cf"; # change the revision
+    }))
   ];
 }

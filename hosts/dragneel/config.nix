@@ -360,6 +360,24 @@
     xdragon
     obs-studio
     pass
+    wezterm
+    zig
+    zls
+    (emacsWithPackagesFromUsePackage {
+      package = pkgs.emacsGit;
+      config = ../../config/emacs/config.org;
+      extraEmacsPackages = epkgs: [
+        epkgs.use-package
+        epkgs.evil
+        epkgs.evil-collection
+        epkgs.evil-tutor
+        epkgs.general
+        epkgs.which-key
+        epkgs.toc-org
+        epkgs.org-bullets
+        epkgs.sudo-edit
+      ];
+    })
     #Awesome related
     xorg.xprop
     xorg.xinit
@@ -413,8 +431,9 @@
   # Services to start
   
   services = {
+    emacs.enable = true;
     mpd = {
-      enable = true;
+      enable = false;
       user = "cylis";
       extraConfig = ''
         audio_output {
