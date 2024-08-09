@@ -118,9 +118,9 @@
 
 (use-package sudo-edit
   :config
-  (cylis/leader-keys
-"f u" '(sudo-edit-find-file :wk "Sudo find file")
-"f U" '(sudo-edit :wk "Sudo edit file")))
+    (cylis/leader-keys
+        "f u" '(sudo-edit-find-file :wk "Sudo find file")
+        "f U" '(sudo-edit :wk "Sudo edit file")))
 
 (use-package which-key
   :init

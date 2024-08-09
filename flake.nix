@@ -8,6 +8,7 @@
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     stylix.url = "github:danth/stylix";
+    zig.url = "github:mitchellh/zig-overlay";
     fine-cmdline = {
       url = "github:VonHeikemen/fine-cmdline.nvim";
       flake = false;
@@ -21,7 +22,7 @@
   };
 
   outputs =
-    { nixpkgs, home-manager, nixpkgs-stable, ... }@inputs:
+    { nixpkgs, home-manager, nixpkgs-stable, zig, ... }@inputs:
     let
       system = "x86_64-linux";
       host = "dragneel";
