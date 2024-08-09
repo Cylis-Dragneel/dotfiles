@@ -154,8 +154,8 @@ in
     };
     picom = {
       enable = true;
-      activeOpacity = 1.0;
-      inactiveOpacity = 1.0;
+      activeOpacity = 0.9;
+      inactiveOpacity = 0.7;
       shadow = true;
       shadowOffsets = [ (-25) (-25) ];
       shadowOpacity = 0.5;
@@ -165,7 +165,17 @@ in
         0.03
         0.03
       ];
+      opacityRules = [
+        "100:class_g = 'Vivaldi-stable'"
+        "100:class_g = 'rofi'"
+      ];
+      backend = "glx";
       settings = {
+        blur =
+          { method = "gaussian";
+              size = 10;
+              deviation = 5.0;
+          };
         shadow-radius = 25;
       };
     };

@@ -311,7 +311,6 @@
     vscode-langservers-extracted
     zsh
     zsh-fzf-tab
-    #zsh-powerlevel10k
     zsh-autosuggestions
     zsh-syntax-highlighting
     mangohud
@@ -320,8 +319,7 @@
     todoist-electron
     planify
     zed-editor
-    #mpdris2
-    #nixd
+    nixd
     tmuxifier
     ghc
     vivaldi
@@ -363,9 +361,15 @@
     wezterm
     zig
     zls
+    lua54Packages.luacheck
+    pylint
+    #rmpc
+    texliveMedium
+    texlivePackages.wrapfig
+    texlivePackages.wrapfig2
     (emacsWithPackagesFromUsePackage {
       package = pkgs.emacsGit;
-      config = ../../config/emacs/config.org;
+      config = ../../config/emacs/init.el;
       extraEmacsPackages = epkgs: [
         epkgs.use-package
         epkgs.evil
@@ -376,6 +380,50 @@
         epkgs.toc-org
         epkgs.org-bullets
         epkgs.sudo-edit
+        epkgs.all-the-icons
+        epkgs.all-the-icons-dired
+        epkgs.counsel
+        epkgs.ivy
+        epkgs.ivy-rich
+        epkgs.all-the-icons-ivy-rich
+        epkgs.elcord
+        epkgs.eshell-syntax-highlighting
+        epkgs.vterm
+        epkgs.vterm-toggle
+        epkgs.catppuccin-theme
+        epkgs.rainbow-mode
+        epkgs.company
+        epkgs.company-box
+        epkgs.dashboard
+        epkgs.diminish
+        epkgs.flycheck
+        epkgs.lua-mode
+        epkgs.nix-mode
+        epkgs.haskell-mode
+        epkgs.projectile
+        epkgs.eshell-toggle
+        epkgs.dired-open
+        epkgs.peep-dired
+        epkgs.neotree
+        epkgs.doom-themes
+        epkgs.doom-modeline
+        epkgs.elfeed
+        epkgs.elfeed-goodies
+        epkgs.git-timemachine
+        epkgs.magit
+        epkgs.hl-todo
+        epkgs.perspective
+        epkgs.rainbow-delimiters
+        epkgs.tldr
+        epkgs.cdlatex
+        epkgs.auctex
+        epkgs.zig-mode
+        epkgs.lsp-mode
+        epkgs.lsp-ui
+        epkgs.lsp-treemacs
+        epkgs.lsp-ivy
+        epkgs.dap-mode
+        epkgs.helm-lsp
       ];
     })
     #Awesome related
@@ -433,7 +481,7 @@
   services = {
     emacs.enable = true;
     mpd = {
-      enable = false;
+      enable = true;
       user = "cylis";
       extraConfig = ''
         audio_output {
