@@ -4,6 +4,7 @@
   host,
   username,
   options,
+  inputs,
   ...
 }:
 
@@ -12,8 +13,6 @@
     ./hardware.nix
     ./users.nix
     ../../modules/amd-drivers.nix
-    ../../modules/nvidia-drivers.nix
-    ../../modules/nvidia-prime-drivers.nix
     ../../modules/intel-drivers.nix
     ../../modules/vm-guest-services.nix
     ../../modules/local-hardware-clock.nix
@@ -105,12 +104,6 @@
 
   # Extra Module Options
   drivers.amdgpu.enable = true;
-  drivers.nvidia.enable = false;
-  drivers.nvidia-prime = {
-    enable = false;
-    intelBusID = "";
-    nvidiaBusID = "";
-  };
   drivers.intel.enable = false;
   vm.guest-services.enable = false;
   local.hardware-clock.enable = false;
@@ -240,7 +233,7 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-
+      
   users = {
     mutableUsers = true;
   };
@@ -306,18 +299,13 @@
     vim-language-server
     bash-language-server
     lua-language-server
-    kotlin-language-server
     haskell-language-server
     vscode-langservers-extracted
     zsh
-    zsh-fzf-tab
     zsh-autosuggestions
     zsh-syntax-highlighting
-    mangohud
     gamemode
     qbittorrent
-    todoist-electron
-    planify
     zed-editor
     nixd
     tmuxifier
@@ -330,32 +318,22 @@
     luajitPackages.luarocks
     cliphist
     scc
-    mpc-cli
     python3
-    cava
-    cavalier
-    tym
-    foot
     love_0_10
     xorg.xev
     wev
-    scrot
     pamixer
     scrcpy
     android-tools
     gimp
     inkscape
-    hilbish
     go
-    go-task
     vesktop
     obsidian
     gitleaks
     nvtopPackages.amd
     scriptisto
     amberol
-    ctpv
-    xdragon
     obs-studio
     pass
     wezterm
@@ -365,8 +343,9 @@
     pylint
     #rmpc
     texliveMedium
-    texlivePackages.wrapfig
-    texlivePackages.wrapfig2
+    xournal
+    scrot
+    musikcube
     (emacsWithPackagesFromUsePackage {
       package = pkgs.emacsGit;
       config = ../../config/emacs/init.el;
@@ -424,6 +403,8 @@
         epkgs.lsp-ivy
         epkgs.dap-mode
         epkgs.helm-lsp
+        epkgs.yasnippet
+        epkgs.carbon-now-sh
       ];
     })
     #Awesome related
@@ -479,9 +460,13 @@
   # Services to start
   
   services = {
+    ollama = {
+      enable = false;
+      acceleration = "rocm";
+    };
     emacs.enable = true;
     mpd = {
-      enable = true;
+      enable = false;
       user = "cylis";
       extraConfig = ''
         audio_output {
@@ -564,8 +549,6 @@
     };
     pipewire = {
       enable = true;
-      alsa.enable = false;
-      alsa.support32Bit = false;
       pulse.enable = true;
     };
     rpcbind.enable = false;
