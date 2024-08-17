@@ -140,10 +140,10 @@ in
   ];
 
   services = {
-    mpd-mpris = {
-      enable = false;
-      mpd.port = 6600;
-    };
+    # mpd-mpris = {
+      # enable = false;
+      # mpd.port = 6600;
+    # };
     flameshot = {
       enable = true;
       package = pkgs-stable.flameshot;
@@ -229,15 +229,34 @@ in
         mouse = true;
         baseIndex = 1;
         prefix = "C-s";
-        extraConfig = "unbind r \nbind r source-file ~/.config/tmux/tmux.conf \nset-option -sa terminal-overrides ',xterm*:Tc' \nset -g @resurrect-capture-pane-contents 'on'\nset -g @continuum-restore 'on'\nset-option -g status-position top \nbind-key -n C-l send-keys 'C-l' \nbind-key -n C-j previous-window \nbind-key -n C-k next-window \nbind-key -n 'M-h' 'select-pane -L'\nbind-key -n 'M-j' 'select-pane -D'\nbind-key -n 'M-k' 'select-pane -U'\nbind-key -n 'M-l' 'select-pane -R'\nset-option -g @catppuccin_flavour 'mocha' \nset-option -g @resurrect-strategy-nvim 'session' \nbind-key -T copy-mode-vi v send-keys -X begin-selection \nbind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle \nbind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel ";
-        plugins = [ 
-          pkgs.tmuxPlugins.resurrect 
-          pkgs.tmuxPlugins.catppuccin 
-          pkgs.tmuxPlugins.sensible 
-          pkgs.tmuxPlugins.vim-tmux-navigator 
-          pkgs.tmuxPlugins.yank 
-          pkgs.tmuxPlugins.continuum
-          pkgs.tmuxPlugins.weather
+        extraConfig = ''
+        unbind r
+        bind r source-file ~/.config/tmux/tmux.conf
+        set-option -sa terminal-overrides ',xterm*:Tc'
+        set -g @resurrect-capture-pane-contents 'on'
+        set -g @continuum-restore 'on'
+        set-option -g status-position top
+        bind-key -n C-l send-keys 'C-l'
+        bind-key -n C-j previous-window
+        bind-key -n C-k next-window
+        bind-key -n 'M-h' 'select-pane -L'
+        bind-key -n 'M-j' 'select-pane -D'
+        bind-key -n 'M-k' 'select-pane -U'
+        bind-key -n 'M-l' 'select-pane -R'
+        set-option -g @catppuccin_flavour 'mocha'
+        set-option -g @resurrect-strategy-nvim 'session'
+        bind-key -T copy-mode-vi v send-keys -X begin-selection
+        bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
+        bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
+        '';
+        plugins = with pkgs.tmuxPlugins; [
+          resurrect
+          catppuccin
+          sensible
+          vim-tmux-navigator
+          yank
+          continuum
+          weather
         ];
     };
     oh-my-posh = {
@@ -301,12 +320,12 @@ in
         config = "nvim ~/zaneyos/config/";
       };
     };
-    vscode = {
-      enable = false;
-      extensions = with pkgs.vscode-extensions; [
-        dracula-theme.theme-dracula
-      ];
-    };
+    # vscode = {
+    #   enable = false;
+    #   extensions = with pkgs.vscode-extensions; [
+    #     dracula-theme.theme-dracula
+    #   ];
+    # };
     zsh = {
       enable = true;
       autosuggestion.enable = true;
@@ -342,9 +361,9 @@ in
         size = 10000;
       };
       profileExtra = ''
-        #if [ -z "$DISPLAY" ]; then
+        # if [ -z "$DISPLAY" ]; then
         #  exec awesome
-        #fi
+        # fi
       '';
       initExtra = ''
         bindkey -e
@@ -353,7 +372,6 @@ in
         fastfetch
         # OMP
         # eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/dracula.omp.json)"
-
         zstyle ':completion:*:git-checkout:*' sort false
         zstyle ':completion:*:descriptions' format '[%d]'
         zstyle ':completion:*' list-colours ''${(s.:.)LS_COLORS}

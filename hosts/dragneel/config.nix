@@ -4,7 +4,6 @@
   host,
   username,
   options,
-  inputs,
   ...
 }:
 
@@ -56,7 +55,6 @@
   stylix = {
     enable = true;
     image = ../../config/wallpapers/japanese-purple.jpg;
-    #base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
     base16Scheme = {
       base00= "1e1e2e"; # base
       base01= "181825"; # mantle
@@ -294,7 +292,6 @@
     greetd.tuigreet
     fzf
     spotube
-    firefox
     yaml-language-server
     vim-language-server
     bash-language-server
@@ -302,8 +299,6 @@
     haskell-language-server
     vscode-langservers-extracted
     zsh
-    zsh-autosuggestions
-    zsh-syntax-highlighting
     gamemode
     qbittorrent
     zed-editor
@@ -341,7 +336,7 @@
     zls
     lua54Packages.luacheck
     pylint
-    #rmpc
+    # rmpc
     texliveMedium
     xournal
     scrot
@@ -468,33 +463,33 @@
       acceleration = "rocm";
     };
     emacs.enable = true;
-    mpd = {
-      enable = false;
-      user = "cylis";
-      extraConfig = ''
-        audio_output {
-          type "pipewire"
-          name "My PipeWire Output"
-        }
-      '';
-    };
+    # mpd = {
+      # enable = false;
+      # user = "cylis";
+      # extraConfig = ''
+        # audio_output {
+          # type "pipewire"
+          # name "My PipeWire Output"
+        # }
+      # '';
+    # };
     kanata = {
       enable = true;
       keyboards = {
         main = {
         config = ''
-  (defsrc
-    caps 
-  )
-  
-  (defalias 
-    ;; tap caps lock as caps lock, hold caps lock as left control
-    caps (tap-hold 200 200 caps lctl)
-  )
-  (deflayer base
-    @caps 
-  )
-'';
+          (defsrc
+            caps 
+          )
+          
+          (defalias 
+            ;; tap caps lock as caps lock, hold caps lock as left control
+            caps (tap-hold 200 200 caps lctl)
+          )
+          (deflayer base
+            @caps 
+          )
+        '';
         };
       };
     };
@@ -573,8 +568,8 @@
   };
 
   # Extra Logitech Support
-  hardware.logitech.wireless.enable = false;
-  hardware.logitech.wireless.enableGraphical = false;
+  # hardware.logitech.wireless.enable = false;
+  # hardware.logitech.wireless.enableGraphical = false;
 
   # Bluetooth Support
   hardware.bluetooth.enable = true;
@@ -638,8 +633,6 @@
   # OpenGL
   hardware.graphics = {
     enable = true;
-    #driSupport = true;
-    #driSupport32Bit = true;
   };
 
   # Open ports in the firewall.

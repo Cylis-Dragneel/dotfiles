@@ -21,10 +21,8 @@ in
         "lp"
         "gamemode"
         "uinput"
-        "mpd"
       ];
       shell = pkgs.zsh;
-      #shell = pkgs.bash;
       ignoreShellProgramCheck = true;
       packages = with pkgs; [
       ];
