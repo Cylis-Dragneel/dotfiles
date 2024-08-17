@@ -346,6 +346,9 @@
     xournal
     scrot
     musikcube
+    zellij
+    cpu-x
+    thefuck
     (emacsWithPackagesFromUsePackage {
       package = pkgs.emacsGit;
       config = ../../config/emacs/init.el;

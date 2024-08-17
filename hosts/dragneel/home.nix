@@ -38,14 +38,14 @@ in
     source = ../../config/fastfetch;
     recursive = true;
   };
-    #home.file.".config/awesome" = {
+  #home.file.".config/awesome" = {
     #source = ../../config/awesome;
     #recursive = true;
   #};
-  # home.file.".config/emacs" = {
-  #   source = ../../config/emacs;
-  #   recursive = true;
-  # };
+  #home.file.".config/emacs" = {
+  #  source = ../../config/emacs;
+  #  recursive = true;
+  #};
   home.file.".config/wlogout/icons" = {
     source = ../../config/wlogout;
     recursive = true;
@@ -126,7 +126,6 @@ in
     (import ../../scripts/emopicker9000.nix { inherit pkgs; })
     (import ../../scripts/task-waybar.nix { inherit pkgs; })
     (import ../../scripts/squirtle.nix { inherit pkgs; })
-    (import ../../scripts/nvidia-offload.nix { inherit pkgs; })
     (import ../../scripts/wallsetter.nix {
       inherit pkgs;
       inherit username;
@@ -141,11 +140,8 @@ in
   ];
 
   services = {
-    mpd-discord-rpc = {
-      enable = false;
-    };
     mpd-mpris = {
-      enable = true;
+      enable = false;
       mpd.port = 6600;
     };
     flameshot = {
@@ -155,7 +151,7 @@ in
     picom = {
       enable = true;
       activeOpacity = 0.9;
-      inactiveOpacity = 0.7;
+      inactiveOpacity = 0.8;
       shadow = true;
       shadowOffsets = [ (-25) (-25) ];
       shadowOpacity = 0.5;
@@ -167,7 +163,8 @@ in
       ];
       opacityRules = [
         "100:class_g = 'Vivaldi-stable'"
-        "100:class_g = 'rofi'"
+        "100:class_g = 'Rofi'"
+        "100:class_g = 'duckstation-qt'"
       ];
       backend = "glx";
       settings = {
@@ -202,36 +199,6 @@ in
   };
 
   programs = {
-    lf = {
-      enable = true;
-      previewer = {
-        keybinding = "i";
-        source = "${pkgs.ctpv}/bin/cptv";
-      };
-      extraConfig = ''
-        set shell zsh
-        set mouse
-        set ratios 2:5:7
-        set info size
-        set period 1
-        set scroll off 10
-        &ctpv -s $id 
-        cmd on-quit %ctpv -e $id
-        set cleaner $ctpvclear
-        set cursorpreviewfmt "\033[7;2m"
-        map <enter> shell
-        map p : paste;clear 
-        map <esc> :{{unselect; clear;}}
-        map a :push %mkdir<space>
-        cmd drag dragon $fx
-        map M :drag
-      '';
-    };
-    ncmpcpp = {
-      enable = true;
-      package =  pkgs.ncmpcpp.override { visualizerSupport = true; };
-      mpdMusicDir = "/home/cylis/Music/";
-    };
     wezterm = {
         enable = true;
         enableZshIntegration = true;
@@ -274,7 +241,7 @@ in
         ];
     };
     oh-my-posh = {
-      enable = true;
+      enable = false;
       enableZshIntegration = false;
     };
     gh.enable = true;
@@ -380,31 +347,53 @@ in
         #fi
       '';
       initExtra = ''
+        bindkey -e
+
+        [[ ! -f ${../../config/p10k.zsh} ]] || source ${../../config/p10k.zsh}
         fastfetch
-        eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/dracula.omp.json)"
+        # OMP
+        # eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/dracula.omp.json)"
+
+        zstyle ':completion:*:git-checkout:*' sort false
+        zstyle ':completion:*:descriptions' format '[%d]'
+        zstyle ':completion:*' list-colours ''${(s.:.)LS_COLORS}
         zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
         zstyle ':completion:*' menu no
-        zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls $realpath'
-        zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls $realpath'
+        zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza -1 --color=always $realpath'
+        zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
         eval "$(fzf --zsh)"
       '';
+      oh-my-zsh = {
+        enable = true;
+        plugins = [
+          "git" "sudo" "golang" "rust" "command-not-found" "pass"
+        ];
+      };
       plugins = [
         {
           name = "zsh-autosuggestions";
           src = pkgs.zsh-autosuggestions;
+          file = "share/zsh-autosuggestions/zsh-autosuggestions.zsh";
+        }
+        {
+          name = "zsh-completions";
+          src = pkgs.zsh-completions;
+          file = "share/zsh-completions/zsh-completions.zsh";
         }
         {
           name = "zsh-syntax-highlighting";
           src = pkgs.zsh-syntax-highlighting;
+          file = "share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh";
         }
-        #{
-          #name = "powerlevel10k";
-          #src = pkgs.zsh-powerlevel10k;
-          #file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-        #}
+        {
+          name = "powerlevel10k";
+          src = pkgs.zsh-powerlevel10k;
+          file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+        }
         {
           name = "fzf-tab";
           src = pkgs.zsh-fzf-tab;
+          file = "share/fzf-tab/fzf-tab.plugin.zsh";
         }
       ];
     };
