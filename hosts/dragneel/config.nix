@@ -135,7 +135,7 @@
       #libraries = with pkgs; [
       #];
     #};
-    firefox.enable = true;
+    firefox.enable = false;
     gamemode.enable = true;
     starship = {
       enable = true;
@@ -258,9 +258,10 @@
     ncdu
     wl-clipboard
     pciutils
-    ffmpeg
+    ffmpeg-full
     socat
-    cowsay
+    pokemonsay
+    krabby
     ripgrep
     lshw
     bat
@@ -291,7 +292,7 @@
     neovide
     greetd.tuigreet
     fzf
-    spotube
+    # spotube
     yaml-language-server
     vim-language-server
     bash-language-server
@@ -300,7 +301,7 @@
     vscode-langservers-extracted
     zsh
     gamemode
-    qbittorrent
+    deluge-gtk
     zed-editor
     nixd
     tmuxifier
@@ -316,10 +317,10 @@
     python3
     love_0_10
     xorg.xev
-    wev
+    # wev
     pamixer
-    scrcpy
-    android-tools
+    # scrcpy
+    # android-tools
     gimp
     inkscape
     go
@@ -340,10 +341,43 @@
     texliveMedium
     xournal
     scrot
-    musikcube
     zellij
-    cpu-x
     thefuck
+    # aseprite
+    # libresprite
+    gopls
+    redis
+    exercism
+    tldr
+    protonvpn-cli
+    protonvpn-gui
+    pipes-rs
+    tym
+    spotdl
+    screenkey
+    radeontop
+    aria2
+    foliate
+    cmus
+    cmusfm
+    zathura
+    vlc
+    qalculate-gtk
+    jdk
+    yazi
+    figlet
+    (st.overrideAttrs (oldAttrs: rec {
+      patches = [
+        (fetchpatch {
+          url = "https://st.suckless.org/patches/dracula/st-dracula-0.8.5.diff";
+          sha256 = "0ldy43y2xa8q54ci6ahxa3iimfb4hmjsbclkmisx0xjr88nazzhz";
+        })
+        (fetchpatch {
+          url = "https://st.suckless.org/patches/clipboard/st-clipboard-0.8.3.diff";
+          sha256 = "1h1nwilwws02h2lnxzmrzr69lyh6pwsym21hvalp9kmbacwy6p0g";
+        })
+      ];
+    }))
     (emacsWithPackagesFromUsePackage {
       package = pkgs.emacsGit;
       config = ../../config/emacs/init.el;
@@ -403,6 +437,10 @@
         epkgs.helm-lsp
         epkgs.yasnippet
         epkgs.carbon-now-sh
+        epkgs.obsidian
+        epkgs.go-mode
+        epkgs.emms
+        epkgs.emms-mode-line-cycle
       ];
     })
     #Awesome related
@@ -463,16 +501,6 @@
       acceleration = "rocm";
     };
     emacs.enable = true;
-    # mpd = {
-      # enable = false;
-      # user = "cylis";
-      # extraConfig = ''
-        # audio_output {
-          # type "pipewire"
-          # name "My PipeWire Output"
-        # }
-      # '';
-    # };
     kanata = {
       enable = true;
       keyboards = {
@@ -503,15 +531,12 @@
         variant = "";
       };
     };
-    #desktopManager.plasma6.enable = true;
     greetd = {
       enable = true;
       vt = 3;
       settings = {
         default_session = {
-          # Wayland Desktop Manager is installed only for user ryan via home-manager!
           user = username;
-          # with such a vendor-no-locking script, we can switch to another wayland compositor without modifying greetd's config here.
           command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd startx"; 
           #command = "${pkgs.greetd.tuigreet}/bin/tuigreet --sessions ${config.services.xserver.displayManager.sessionData.desktops}/share/xsessions:${config.services.xserver.displayManager.sessionData.desktops}/share/wayland-sessions --remember --remember-user-session";
         };

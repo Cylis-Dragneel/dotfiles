@@ -150,7 +150,7 @@ in
     };
     picom = {
       enable = true;
-      activeOpacity = 0.9;
+      activeOpacity = 1.0;
       inactiveOpacity = 0.8;
       shadow = true;
       shadowOffsets = [ (-25) (-25) ];
@@ -167,6 +167,7 @@ in
         "100:class_g = 'duckstation-qt'"
       ];
       backend = "glx";
+      vSync = true;
       settings = {
         blur =
           { method = "gaussian";
@@ -369,7 +370,7 @@ in
         bindkey -e
 
         [[ ! -f ${../../config/p10k.zsh} ]] || source ${../../config/p10k.zsh}
-        fastfetch
+        krabby random
         # OMP
         # eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/dracula.omp.json)"
         zstyle ':completion:*:git-checkout:*' sort false
@@ -380,6 +381,9 @@ in
         zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza -1 --color=always $realpath'
         zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
         eval "$(fzf --zsh)"
+        eval $(thefuck --alias)
+        eval $(thefuck --alias tf)
+        export MANPAGER='nvim +Man!'
       '';
       oh-my-zsh = {
         enable = true;
