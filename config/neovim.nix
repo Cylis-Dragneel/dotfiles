@@ -29,6 +29,8 @@ in
         bashdb
       ];
       plugins = with pkgs.vimPlugins; [
+        supermaven-nvim
+        obsidian-nvim
         vim-carbon-now-sh
         oil-nvim
         catppuccin-nvim
@@ -77,6 +79,7 @@ in
         ${builtins.readFile ./nvim/plugins/autopairs.lua}
         ${builtins.readFile ./nvim/plugins/auto-session.lua}
         ${builtins.readFile ./nvim/plugins/comment.lua}
+        ${builtins.readFile ./nvim/plugins/supermaven.lua}
         ${builtins.readFile ./nvim/plugins/cmp.lua}
         ${builtins.readFile ./nvim/plugins/lsp.lua}
         ${builtins.readFile ./nvim/plugins/nvim-tree.lua}

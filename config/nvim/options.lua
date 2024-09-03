@@ -8,6 +8,7 @@ opt.expandtab = true
 opt.autoindent = true
 opt.wrap = false
 vim.o.whichwrap = 'b,s,<,>,[,],h,l'
+vim.o.fillchars = 'eob: '
 opt.ignorecase = true
 opt.smartcase = true
 opt.termguicolors = true

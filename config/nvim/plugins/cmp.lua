@@ -33,13 +33,16 @@ cmp.setup({
     { name = "luasnip" }, -- snippets
     { name = "buffer" }, -- text within current buffer
     { name = "path" }, -- file system paths
+    { name = "supermaven" }, -- AI
   }),
 
   -- configure lspkind for vs-code like pictograms in completion menu
   formatting = {
     format = lspkind.cmp_format({
-      maxwidth = 50,
-      ellipsis_char = "...",
+	mode = "symbol",
+	maxwidth = 50,
+	ellipsis_char = "...",
+	symbol_map = { Supermaven = "" }
     }),
   },
 })
