@@ -9,6 +9,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     stylix.url = "github:danth/stylix";
     zig.url = "github:mitchellh/zig-overlay";
+    ghostty.url = "git+ssh://git@github.com/ghostty-org/ghostty";
     fine-cmdline = {
       url = "github:VonHeikemen/fine-cmdline.nvim";
       flake = false;
@@ -22,7 +23,7 @@
   };
 
   outputs =
-    { nixpkgs, home-manager, nixpkgs-stable, zig, ... }@inputs:
+    { nixpkgs, home-manager, nixpkgs-stable, zig, ghostty, ... }@inputs:
     let
       system = "x86_64-linux";
       host = "dragneel";
@@ -42,6 +43,9 @@
             inputs.stylix.nixosModules.stylix
             home-manager.nixosModules.home-manager
             {
+              environment.systemPackages = [
+                ghostty.packages.x86_64-linux.default
+              ];
               home-manager.extraSpecialArgs = {
                 inherit username;
                 inherit inputs;
