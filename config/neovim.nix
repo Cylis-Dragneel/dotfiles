@@ -29,9 +29,9 @@ in
         bashdb
       ];
       plugins = with pkgs.vimPlugins; [
+        mini-nvim
         supermaven-nvim
         obsidian-nvim
-        vim-carbon-now-sh
         oil-nvim
         catppuccin-nvim
         nvim-colorizer-lua
@@ -64,9 +64,9 @@ in
         todo-comments-nvim
         nvim-tree-lua
         telescope-fzf-native-nvim
-        vim-tmux-navigator
-        nvim-dap
-        nvim-dap-ui
+        # vim-tmux-navigator
+        # nvim-dap
+        # nvim-dap-ui
       ];
       extraConfig = ''
         set noemoji
@@ -88,9 +88,8 @@ in
         ${builtins.readFile ./nvim/plugins/treesitter.lua}
         ${builtins.readFile ./nvim/plugins/fine-cmdline.lua}
         ${builtins.readFile ./nvim/plugins/bufferline.lua}
-        ${builtins.readFile ./nvim/plugins/debugging.lua}
         ${builtins.readFile ./nvim/plugins/whichkey.lua}
-        ${builtins.readFile ./nvim/plugins/carbon.lua}
+        ${builtins.readFile ./nvim/plugins/obsidian.lua}
         require("ibl").setup()
         require("colorizer").setup()
         require("lualine").setup({

@@ -26,4 +26,5 @@ opt.hlsearch = false
 vim.o.scrolloff = 3
 vim.o.sidescrolloff = 5
 vim.g.mapleader = " "
+vim.o.conceallevel = 2
 
