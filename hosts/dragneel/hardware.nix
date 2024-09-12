@@ -18,15 +18,15 @@
       fsType = "ext4";
     };
 
+  fileSystems."/home" =
+    { device = "/dev/disk/by-uuid/ec43112b-4ac8-4ff6-8449-b5aa2783497e";
+      fsType = "btrfs";
+    };
+
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/CA3B-3DC3";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
-    };
-
-  fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/ec43112b-4ac8-4ff6-8449-b5aa2783497e";
-      fsType = "btrfs";
     };
 
   swapDevices =
@@ -39,6 +39,8 @@
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp3s0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.tailscale0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.virbr0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp0s20u10.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

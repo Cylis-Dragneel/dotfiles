@@ -338,7 +338,7 @@
     lua54Packages.luacheck
     pylint
     # rmpc
-    texliveMedium
+    # texliveMedium
     xournal
     scrot
     zellij
@@ -346,13 +346,13 @@
     # aseprite
     # libresprite
     gopls
-    redis
+    # redis
     exercism
     tldr
     protonvpn-cli
     protonvpn-gui
     pipes-rs
-    tym
+    # tym
     spotdl
     screenkey
     radeontop
@@ -366,18 +366,24 @@
     jdk
     yazi
     figlet
-    (st.overrideAttrs (oldAttrs: rec {
-      patches = [
-        (fetchpatch {
-          url = "https://st.suckless.org/patches/dracula/st-dracula-0.8.5.diff";
-          sha256 = "0ldy43y2xa8q54ci6ahxa3iimfb4hmjsbclkmisx0xjr88nazzhz";
-        })
-        (fetchpatch {
-          url = "https://st.suckless.org/patches/clipboard/st-clipboard-0.8.3.diff";
-          sha256 = "1h1nwilwws02h2lnxzmrzr69lyh6pwsym21hvalp9kmbacwy6p0g";
-        })
-      ];
-    }))
+    soulseekqt
+    yacreader
+    ripgrep
+    nodejs_20
+    pnpm
+    netlify-cli
+    # (st.overrideAttrs (oldAttrs: rec {
+    #   patches = [
+    #     (fetchpatch {
+    #       url = "https://st.suckless.org/patches/dracula/st-dracula-0.8.5.diff";
+    #       sha256 = "0ldy43y2xa8q54ci6ahxa3iimfb4hmjsbclkmisx0xjr88nazzhz";
+    #     })
+    #     (fetchpatch {
+    #       url = "https://st.suckless.org/patches/clipboard/st-clipboard-0.8.3.diff";
+    #       sha256 = "1h1nwilwws02h2lnxzmrzr69lyh6pwsym21hvalp9kmbacwy6p0g";
+    #     })
+    #   ];
+    # }))
     (emacsWithPackagesFromUsePackage {
       package = pkgs.emacsGit;
       config = ../../config/emacs/init.el;
@@ -426,8 +432,8 @@
         epkgs.perspective
         epkgs.rainbow-delimiters
         epkgs.tldr
-        epkgs.cdlatex
-        epkgs.auctex
+        # epkgs.cdlatex
+        # epkgs.auctex
         epkgs.zig-mode
         epkgs.lsp-mode
         epkgs.lsp-ui
@@ -488,7 +494,7 @@
     ];
     configPackages = [
       pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-hyprland
+      # pkgs.xdg-desktop-portal-hyprland
       pkgs.xdg-desktop-portal
     ];
   };
@@ -507,15 +513,16 @@
         main = {
         config = ''
           (defsrc
-            caps 
+            caps ret
           )
           
           (defalias 
             ;; tap caps lock as caps lock, hold caps lock as left control
             caps (tap-hold 200 200 caps lctl)
           )
+          (defalias enter (tap-hold 200 200 ret bspc))
           (deflayer base
-            @caps 
+            @caps @enter
           )
         '';
         };
@@ -637,8 +644,8 @@
         "nix-command"
         "flakes"
       ];
-      substituters = [ "https://hyprland.cachix.org" ];
-      trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+      # substituters = [ "https://hyprland.cachix.org" ];
+      # trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
     };
     gc = {
       automatic = true;

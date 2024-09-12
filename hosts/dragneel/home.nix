@@ -17,14 +17,14 @@ in
 
   # Import Program Configurations
   imports = [
-    ../../config/emoji.nix
-    ../../config/hyprland.nix
+    # ../../config/emoji.nix
+    # ../../config/hyprland.nix
     ../../config/neovim.nix
     ../../config/rofi/rofi.nix
     ../../config/rofi/config-emoji.nix
     ../../config/rofi/config-long.nix
-    ../../config/swaync.nix
-    ../../config/waybar.nix
+    # ../../config/swaync.nix
+    # ../../config/waybar.nix
     ../../config/wlogout.nix
     inputs.jerry.homeManagerModules.default
   ];
@@ -99,7 +99,7 @@ in
   # Styling Options
   stylix.targets.waybar.enable = false;
   stylix.targets.rofi.enable = false;
-  stylix.targets.hyprland.enable = false;
+  # stylix.targets.hyprland.enable = false;
   stylix.targets.kde.enable = false;
   gtk = {
     iconTheme = {
@@ -206,12 +206,13 @@ in
         extraConfig =''
         return {
           font = wezterm.font_with_fallback {
+                "Pixilized",
                 "CozetteHiDpi",
                 "koishi",
                 "fairfax",
                 "JetBrains Mono Nerd Font Mono",
           },
-          font_size = 14.0,
+          font_size = 16.0,
           color_scheme = "Catppuccin Mocha",
           hide_tab_bar_if_only_one_tab = true,
           enable_wayland = false,
@@ -276,7 +277,7 @@ in
             package = pkgs.starship;
           };
     kitty = {
-      enable = true;
+      enable = false;
       package = pkgs.kitty;
       settings = {
         scrollback_lines = 2000;
