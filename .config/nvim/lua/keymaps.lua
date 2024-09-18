@@ -1,0 +1,5 @@
+vim.keymap.set("i", "jk", "<ESC>", {})
+vim.keymap.set("i", "kj", "<ESC>", {})
+vim.keymap.set("n", "<leader>nh", ":nohl<CR>", {})
+vim.keymap.set("v", ">", ">gv", {})
+vim.keymap.set("v", "<", "<gv", {})

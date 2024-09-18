@@ -1,13 +1,16 @@
-require("plugins")
-require('keybindings')
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
+end
+vim.opt.rtp:prepend(lazypath)
+
 require("options")
-require('lualine-config')
-require('bufferline-config')
-require('nvim-tree-config')
-require("treesitter-config")
-require('ts-autotag-config')
-require('autopairs-config')
-require('whichkey-config')
-require('cmp-config')
-require('telescope-config')
-vim.cmd.colorscheme "catppuccin-mocha"
+require("keymaps")
+require("lazy").setup("plugins")
