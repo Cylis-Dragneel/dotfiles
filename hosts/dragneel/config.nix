@@ -75,8 +75,8 @@
     };
     polarity = "dark";
     opacity.terminal = 0.8;
-    cursor.package = pkgs.bibata-cursors;
-    cursor.name = "Bibata-Modern-Ice";
+    cursor.package = pkgs.banana-cursor;
+    cursor.name = "Banana";
     cursor.size = 24;
     fonts = {
       monospace = {
@@ -376,7 +376,10 @@
     betterbird
     fd
     spotify
-    spicetify-cli
+    sshfs
+    timg
+    flowtime
+    mousam
     # silicon
     # (st.overrideAttrs (oldAttrs: rec {
     #   patches = [
@@ -652,6 +655,11 @@
       ];
       # substituters = [ "https://hyprland.cachix.org" ];
       # trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+      substituters = [
+        "https://cache.garnix.io"
+        "https://ghostty.cachix.org"
+      ];
+      trusted-public-keys = ["cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="];
     };
     gc = {
       automatic = true;

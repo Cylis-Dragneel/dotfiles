@@ -10,6 +10,13 @@
     stylix.url = "github:danth/stylix";
     zig.url = "github:mitchellh/zig-overlay";
     ghostty.url = "git+ssh://git@github.com/ghostty-org/ghostty";
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    pollymc = {
+      url = "github:fn2006/PollyMC";
+    };
     fine-cmdline = {
       url = "github:VonHeikemen/fine-cmdline.nvim";
       flake = false;
@@ -23,7 +30,7 @@
   };
 
   outputs =
-    { nixpkgs, home-manager, nixpkgs-stable, zig, ghostty, ... }@inputs:
+    { nixpkgs, home-manager, nixpkgs-stable, zig, ghostty, spicetify-nix, pollymc, ... }@inputs:
     let
       system = "x86_64-linux";
       host = "dragneel";
@@ -42,14 +49,17 @@
             ./hosts/${host}/config.nix
             inputs.stylix.nixosModules.stylix
             home-manager.nixosModules.home-manager
-            {
+            ({pkgs, ...}: {
+              nixpkgs.overlays = [pollymc.overlays.default];
               environment.systemPackages = [
                 ghostty.packages.x86_64-linux.default
+                pkgs.pollymc
               ];
               home-manager.extraSpecialArgs = {
                 inherit username;
                 inherit inputs;
                 inherit host;
+                inherit spicetify-nix;
                 pkgs-stable = import nixpkgs-stable {
                   inherit system;
                   inherit inputs;
@@ -62,7 +72,7 @@
               home-manager.useUserPackages = true;
               home-manager.backupFileExtension = "backup";
               home-manager.users.${username} = import ./hosts/${host}/home.nix;
-            }
+            })
           ];
         };
       };

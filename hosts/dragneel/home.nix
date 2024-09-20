@@ -23,11 +23,11 @@ in
     ../../config/rofi/rofi.nix
     ../../config/rofi/config-emoji.nix
     ../../config/rofi/config-long.nix
-    ../../config/spicetfy.nix
     # ../../config/swaync.nix
     # ../../config/waybar.nix
     ../../config/wlogout.nix
     inputs.jerry.homeManagerModules.default
+    inputs.spicetify-nix.homeManagerModules.default
   ];
 
   # Place Files Inside Home Directory
@@ -199,8 +199,32 @@ in
       };
     };
   };
+  
 
   programs = {
+    spicetify =
+    let
+      spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+    in
+    {
+      enable = true;
+      enabledExtensions = with spicePkgs.extensions; [
+        adblock
+        fullScreen
+        volumePercentage
+        showQueueDuration
+        goToSong
+        powerBar
+        skipOrPlayLikedSongs
+        volumeProfiles
+        playNext
+        history
+        keyboardShortcut
+        shuffle
+      ];
+      theme = spicePkgs.themes.catppuccin;
+      colorScheme = "mocha";
+    };
     wezterm = {
         enable = true;
         enableZshIntegration = true;
@@ -239,14 +263,33 @@ in
         set -g @resurrect-capture-pane-contents 'on'
         set -g @continuum-restore 'on'
         set-option -g status-position top
+        bind-key -n M-j previous-window
+        bind-key -n M-k next-window
+        bind-key -n M-h previous-window
+        bind-key -n M-l next-window
+        bind-key -n 'C-h' 'select-pane -L'
+        bind-key -n 'C-j' 'select-pane -D'
+        bind-key -n 'C-k' 'select-pane -U'
+        bind-key -n 'C-l' 'select-pane -R'
         bind-key -n C-l send-keys 'C-l'
-        bind-key -n C-j previous-window
-        bind-key -n C-k next-window
-        bind-key -n 'M-h' 'select-pane -L'
-        bind-key -n 'M-j' 'select-pane -D'
-        bind-key -n 'M-k' 'select-pane -U'
-        bind-key -n 'M-l' 'select-pane -R'
+
+        #catppuccin setup + status line
         set-option -g @catppuccin_flavour 'mocha'
+        set -g @catppuccin_window_left_separator ""
+        set -g @catppuccin_window_right_separator " "
+        set -g @catppuccin_window_middle_separator " █"
+        set -g @catppuccin_window_number_position "right"
+        set -g @catppuccin_window_default_fill "number"
+        set -g @catppuccin_window_default_text "#W"
+        set -g @catppuccin_window_current_fill "number"
+        set -g @catppuccin_window_current_text "#W"
+        set -g @catppuccin_status_modules_right "host session date_time"
+        set -g @catppuccin_status_left_separator  " "
+        set -g @catppuccin_status_right_separator ""
+        set -g @catppuccin_status_fill "icon"
+        set -g @catppuccin_status_connect_separator "no"
+        set -g @catppuccin_directory_text "#{pane_current_path}"
+
         set-option -g @resurrect-strategy-nvim 'session'
         bind-key -T copy-mode-vi v send-keys -X begin-selection
         bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
@@ -259,7 +302,6 @@ in
           vim-tmux-navigator
           yank
           continuum
-          weather
         ];
     };
     oh-my-posh = {
