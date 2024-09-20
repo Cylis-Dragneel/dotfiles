@@ -64,7 +64,7 @@ in
         todo-comments-nvim
         nvim-tree-lua
         telescope-fzf-native-nvim
-        # vim-tmux-navigator
+        vim-tmux-navigator
         # nvim-dap
         # nvim-dap-ui
       ];

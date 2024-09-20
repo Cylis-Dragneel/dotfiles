@@ -23,6 +23,7 @@ in
     ../../config/rofi/rofi.nix
     ../../config/rofi/config-emoji.nix
     ../../config/rofi/config-long.nix
+    ../../config/spicetfy.nix
     # ../../config/swaync.nix
     # ../../config/waybar.nix
     ../../config/wlogout.nix
@@ -146,7 +147,7 @@ in
     # };
     flameshot = {
       enable = true;
-      package = pkgs-stable.flameshot;
+      package = pkgs.flameshot;
     };
     picom = {
       enable = true;
@@ -346,7 +347,6 @@ in
         la = "eza -lah --icons --grid --group-directories-first";
         host = "nvim ~/zaneyos/hosts/dragneel/";
         config = "nvim ~/zaneyos/config/";
-        mp = "ncmpcpp";
         py-server = "python -m http.server 8040";
         py-virt = "source .venv/bin/activate";
         py-virtc = "python3 -m venv .venv";
@@ -354,6 +354,10 @@ in
         reload = "source ~/.zshrc";
         nix-dev = "tmuxifier load-session nix";
         awm = "tmuxifier load-session awm";
+        zl = "zellij";
+        cmc = "cmus-remote -C 'clear'";
+        cma = "cmus-remote -C 'add ~/Music";
+        cmu = "cmus-remote -C 'update-cache -f'";
       };
       defaultKeymap = "emacs";
       history = {

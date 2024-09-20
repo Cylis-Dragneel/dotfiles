@@ -342,7 +342,7 @@
     xournal
     scrot
     zellij
-    thefuck
+    thefuck # Favorite package btw
     # aseprite
     # libresprite
     gopls
@@ -372,6 +372,12 @@
     nodejs_20
     pnpm
     netlify-cli
+    lutgen
+    betterbird
+    fd
+    spotify
+    spicetify-cli
+    # silicon
     # (st.overrideAttrs (oldAttrs: rec {
     #   patches = [
     #     (fetchpatch {
@@ -494,7 +500,7 @@
     ];
     configPackages = [
       pkgs.xdg-desktop-portal-gtk
-      # pkgs.xdg-desktop-portal-hyprland
+      pkgs.xdg-desktop-portal-hyprland
       pkgs.xdg-desktop-portal
     ];
   };
