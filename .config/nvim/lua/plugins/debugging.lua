@@ -8,7 +8,6 @@ return {
   config = function()
     local dap = require("dap")
     local dapui = require("dapui")
-    require("dap-go")
     require("dapui")
     dap.listeners.before.attach.dapui_config = function()
       dapui.open()
@@ -24,5 +23,12 @@ return {
     end
     vim.keymap.set("n", "<Leader>dt", dap.toggle_breakpoint, {})
     vim.keymap.set("n", "<Leader>dc", dap.continue, {})
+    -- vim.keymap.set("n", "<Leader>du", function()
+    --   local widgets = require("dap.ui.widgets")
+    --   local sidebar = widgets.sidebar(widgets.scopes)
+    --   sidebar.open()
+    -- end, {})
+    -- vim.keymap.set("n", "<Leader>gt", dap_go.debug_test(), {})
+    -- vim.keymap.set("n", "<Leader>gl", dap_go.debug_last(), {})
   end,
 }
