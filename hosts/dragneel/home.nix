@@ -28,6 +28,7 @@ in
     ../../config/wlogout.nix
     inputs.jerry.homeManagerModules.default
     inputs.spicetify-nix.homeManagerModules.default
+    inputs.nyaa.homeManagerModule
   ];
 
   # Place Files Inside Home Directory
@@ -39,14 +40,14 @@ in
     source = ../../config/fastfetch;
     recursive = true;
   };
-  #home.file.".config/awesome" = {
-  #source = ../../config/awesome;
-  #recursive = true;
-  #};
-  #home.file.".config/emacs" = {
-  #  source = ../../config/emacs;
-  #  recursive = true;
-  #};
+  home.file.".config/awesome" = {
+    source = ../../config/awesome;
+    recursive = true;
+  };
+  home.file.".config/emacs" = {
+    source = ../../config/emacs;
+    recursive = true;
+  };
   home.file.".config/wlogout/icons" = {
     source = ../../config/wlogout;
     recursive = true;
@@ -70,6 +71,17 @@ in
     enable = true;
     userName = "${gitUsername}";
     userEmail = "${gitEmail}";
+    extraConfig = {
+      init = {
+        defaultBranch = "main";
+      };
+      color = {
+        ui = "auto";
+      };
+      pull = {
+        rebase = false;
+      };
+    };
   };
   i18n.inputMethod.enabled = "fcitx5";
   i18n.inputMethod.fcitx5.addons = with pkgs; [
@@ -143,11 +155,14 @@ in
     })
   ];
 
+  programs.nyaa = {
+    enable = true;
+    download_client = "DefaultApp";
+    client.default_app.use_magnet = true;
+    source.nyaa.default_sort = "Seeders";
+  };
+
   services = {
-    # mpd-mpris = {
-    # enable = false;
-    # mpd.port = 6600;
-    # };
     flameshot = {
       enable = true;
       package = pkgs.flameshot;
@@ -207,6 +222,11 @@ in
   };
 
   programs = {
+    direnv = {
+      enable = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
+    };
     spicetify =
       let
         spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
@@ -231,7 +251,7 @@ in
         colorScheme = "mocha";
       };
     wezterm = {
-      enable = true;
+      enable = false;
       enableZshIntegration = true;
       extraConfig = ''
         return {
@@ -264,6 +284,9 @@ in
       extraConfig = ''
         unbind r
         bind r source-file ~/.config/tmux/tmux.conf
+        bind '"' split-window -c "#{pane_current_path}"
+        bind % split-window -h -c "#{pane_current_path}"
+        bind c new-window -c "#{pane_current_path}"
         set-option -sa terminal-overrides ',xterm*:Tc'
         set -g @resurrect-capture-pane-contents 'on'
         set -g @continuum-restore 'on'
@@ -299,6 +322,7 @@ in
         bind-key -T copy-mode-vi v send-keys -X begin-selection
         bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
         bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
+        set -g default-terminal "tmux"
       '';
       plugins = with pkgs.tmuxPlugins; [
         resurrect
@@ -325,7 +349,7 @@ in
       package = pkgs.starship;
     };
     kitty = {
-      enable = false;
+      enable = true;
       package = pkgs.kitty;
       settings = {
         scrollback_lines = 2000;
@@ -369,12 +393,6 @@ in
         config = "nvim ~/cylisos/config/";
       };
     };
-    # vscode = {
-    #   enable = false;
-    #   extensions = with pkgs.vscode-extensions; [
-    #     dracula-theme.theme-dracula
-    #   ];
-    # };
     zsh = {
       enable = true;
       autosuggestion.enable = true;
@@ -395,14 +413,13 @@ in
         py-server = "python -m http.server 8040";
         py-virt = "source .venv/bin/activate";
         py-virtc = "python3 -m venv .venv";
-        zsh-e = "v ~/.zshrc";
-        reload = "source ~/.zshrc";
-        # nix-dev = "tmuxifier load-session nix";
-        # awm = "tmuxifier load-session awm";
+        rl = "source ~/.zshrc";
         zl = "zellij";
         cmc = "cmus-remote -C 'clear'";
         cma = "cmus-remote -C 'add ~/Music";
         cmu = "cmus-remote -C 'update-cache -f'";
+        nix-shell = "nix-shell --command zsh";
+        nix-develop = "nix develop --command zsh";
       };
       defaultKeymap = "emacs";
       history = {
@@ -419,7 +436,7 @@ in
       initExtra = ''
         bindkey -e
 
-        [[ ! -f ${../../config/p10k.zsh} ]] || source ${../../config/p10k.zsh}
+        [[ ! -f ${../../config/.p10k.zsh} ]] || source ${../../config/.p10k.zsh}
         krabby random
         # OMP
         # eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/dracula.omp.json)"
@@ -444,6 +461,7 @@ in
           "rust"
           "command-not-found"
           "pass"
+          "direnv"
         ];
       };
       plugins = [

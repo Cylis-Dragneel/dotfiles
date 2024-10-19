@@ -379,6 +379,18 @@
     timg
     flowtime
     mousam
+    victor-mono
+    freetube
+    anup
+    libreoffice
+    lutris
+    wine64
+    wineWow65Packages.waylandFul
+    openpomodoro-cli
+    ente-auth
+    xwallpaper
+    xbindkeys
+    polybar
     # silicon
     # (st.overrideAttrs (oldAttrs: rec {
     #   patches = [
@@ -540,6 +552,14 @@
     xserver = {
       enable = true;
       displayManager.startx.enable = true;
+      desktopManager = {
+        xfce = {
+          enable = true;
+          enableXfwm = false;
+          noDesktop = true;
+        };
+      };
+      windowManager.i3.enable = true;
       xkb = {
         layout = "us,jp";
         options = "grp:win_space_toggle";
@@ -548,7 +568,7 @@
     };
     greetd = {
       enable = true;
-      vt = 3;
+      vt = 2;
       settings = {
         default_session = {
           user = username;
@@ -584,6 +604,14 @@
       user = "${username}";
       dataDir = "/home/${username}";
       configDir = "/home/${username}/.config/syncthing";
+      settings = {
+        folders = {
+          "/home/${username}/Documents/Main" = {
+            id = "obsidian";
+            devices = [ "mobile" ];
+          };
+        };
+      };
     };
     pipewire = {
       enable = true;
