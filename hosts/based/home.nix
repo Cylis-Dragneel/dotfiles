@@ -279,6 +279,7 @@ in
         bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
         bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
         set-option -sa terminal-overrides ',xterm*:Tc'
+        set -g default-terminal "tmux"
         set -g @resurrect-capture-pane-contents 'on'
         set -g @continuum-restore 'on'
         set-option -g status-position top

@@ -75,6 +75,9 @@
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
     polarity = "dark";
     opacity.terminal = 0.8;
+    cursor.package = pkgs.banana-cursor;
+    cursor.name = "Banana";
+    cursor.size = 24;
     fonts = {
       monospace = {
         package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
@@ -327,6 +330,7 @@
     timg
     flowtime
     mousam
+    victor-mono
     #Awesome related
     xorg.xprop
     xorg.xinit
