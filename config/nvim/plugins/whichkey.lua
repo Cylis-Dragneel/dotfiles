@@ -11,6 +11,8 @@ wk.add({
     { "<leader>rf", "<cmd>Telescope live_grep<CR>", desc = "Live Grep" },
     { "<leader>rn", "<cmd>set relativenumber<CR>", desc = "Turn on relative numbers" },
     { "<leader>x", "<cmd>bdelete<CR>", desc = "Close Buffer" },
+    { "<leader>gf", "<cmd>lua vim.lsp.buf.format()<cr>", desc = "Format buffer" },
+
     -- { "<leader>z", group = "Focus" },
     -- { "<leader>zt", "<cmd>Twilight<cr>", desc = "Toggle Twilight" },
     -- { "<leader>zz", "<cmd>ZenMode<cr>", desc = "Toggle Zen Mode" },

@@ -28,6 +28,8 @@ in
         bash-language-server
         marksman
         luajitPackages.lua-lsp
+        #Misc.
+        codeium
         # Formatters
         gofumpt
         golines
@@ -38,10 +40,10 @@ in
       ];
       plugins = with pkgs.vimPlugins; [
         none-ls-nvim
+        vim-wakatime
+        codeium-nvim
         mini-nvim
-        supermaven-nvim
         obsidian-nvim
-        oil-nvim
         catppuccin-nvim
         nvim-colorizer-lua
         alpha-nvim
@@ -67,7 +69,6 @@ in
         comment-nvim
         nvim-ts-context-commentstring
         plenary-nvim
-        lazydev-nvim
         luasnip
         telescope-nvim
         todo-comments-nvim
@@ -78,12 +79,13 @@ in
         # nvim-dap-ui
       ];
       extraConfig = ''
+        set termguicolors
         set noemoji
         nnoremap : <cmd>FineCmdline<CR>
       '';
-        ${builtins.readFile ./nvim/plugins/supermaven.lua}
       extraLuaConfig = # lua
         ''
+          ${builtins.readFile ./nvim/plugins/catppuccin.lua}
           ${builtins.readFile ./nvim/options.lua}
           ${builtins.readFile ./nvim/keymaps.lua}
           ${builtins.readFile ./nvim/plugins/alpha.lua}
@@ -104,6 +106,7 @@ in
           ${builtins.readFile ./nvim/plugins/lualine.lua}
           require("ibl").setup()
           require("colorizer").setup()
+          -- require("codeium").setup()
         '';
     };
   };
