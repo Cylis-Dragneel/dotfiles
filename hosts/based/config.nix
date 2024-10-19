@@ -301,6 +301,7 @@
     vesktop
     obsidian
     gitleaks
+    wf-recorder
     pass
     lua54Packages.luacheck
     xournal

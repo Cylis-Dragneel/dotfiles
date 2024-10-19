@@ -28,6 +28,7 @@ in
     ../../config/wlogout.nix
     inputs.jerry.homeManagerModules.default
     inputs.spicetify-nix.homeManagerModules.default
+    inputs.nyaa.homeManagerModule
   ];
 
   # Place Files Inside Home Directory
@@ -139,6 +140,12 @@ in
     })
   ];
 
+  programs.nyaa = {
+    enable = true;
+    download_client = "DefaultApp";
+    client.default_app.use_magnet = true;
+    source.nyaa.default_sort = "Seeders";
+  };
 
   services = {
     flameshot = {
