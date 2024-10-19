@@ -15,6 +15,8 @@
         display-drun = " Apps";
         display-run = " Run";
         display-filebrowser = " File";
+        modes = [ "obsidian:rofi-obsidian" ];
+        combi-modes = [ "obsidian" ];
       };
       theme =
         let
@@ -44,7 +46,7 @@
             background-color = mkLiteral "@bg";
           };
           "mainbox" = {
-            padding = mkLiteral "15px";
+            padding = mkLiteral "10px";
             enabled = true;
             orientation = mkLiteral "vertical";
             children = map mkLiteral [
