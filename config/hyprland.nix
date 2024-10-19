@@ -54,9 +54,6 @@ with lib;
           exec-once = sleep 1.5 && swww img /home/${username}/Pictures/Wallpapers/japanese-purple.jpg
           exec-once = playerctld daemon
           exec-once = mpDris2
-          exec-once = md.obsidian.Obsidian
-          exec-once = todoist-electron
-          exec-once = nextcloud
           exec-once = wl-paste --type text --watch cliphist store
           exec-once = wl-paste --type image --watch cliphist store
           exec-once = battery & disown
@@ -104,11 +101,10 @@ with lib;
           windowrulev2 = workspace 5,class:(mpv)
           #windowrulev2 = workspace 8,class:(com.obsproject.Studio)
           windowrulev2 = workspace 4,class:(spotube)
+          windowrulev2 = workspace 4,class:(Spotify)
           windowrulev2 = workspace 10,class:(Ryujinx)
           windowrulev2 = workspace 10,class:(steam)
           windowrulev2 = workspace 10,class:(lutris)
-          windowrulev2 = float, workspace special,class:(obsidian)
-          windowrulev2 = float, workspace special,class:(Todoist)
           windowrulev2 = pin,title:(Picture in picture)
           windowrulev2 = immediate,class:(steam_app_0)
 
@@ -168,13 +164,12 @@ with lib;
           bind = ${modifier},W,exec,${browser}
           bind = ${modifier},E,exec,emopicker9000
           bind = ${modifier},S,exec,screenshootin
-          bind = ${modifier},D,exec,flatpak run dev.vencord.Vesktop
-          bind = ${modifier},O,exec,md.obsidian.Obsidian
+          bind = ${modifier},D,exec,vesktop
+          bind = ${modifier},O,exec,obsidian
           bind = ${modifier},C,exec,hyprpicker -a
           bind = ${modifier},G,exec,flatpak run net.lutris.Lutris 
-          #bind = ${modifier}SHIFT,G,exec,godot4
           bind = ${modifier},N,exec,thunar
-          bind = ${modifier},M,exec,spotube
+          bind = ${modifier},M,exec,spotify
           bind = ,F10,exec,jerry --rofi
           bind = ${modifier},V,exec,cliphist list | rofi -dmenu | cliphist decode | wl-copy
           bind = ${modifier},Q,killactive,
@@ -209,8 +204,8 @@ with lib;
           bind = ${modifier},8,workspace,8
           bind = ${modifier},9,workspace,9
           bind = ${modifier},0,workspace,10
-          bind = ${modifier}SHIFT,SPACE,movetoworkspace,special
-          bind = ${modifier},SPACE,togglespecialworkspace
+          bind = ${modifier}SHIFT,T,movetoworkspace,special
+          bind = ${modifier},T,togglespecialworkspace
           bind = ${modifier}SHIFT,1,movetoworkspace,1
           bind = ${modifier}SHIFT,2,movetoworkspace,2
           bind = ${modifier}SHIFT,3,movetoworkspace,3
@@ -229,15 +224,20 @@ with lib;
           bindm = ${modifier},mouse:273,resizewindow
           bind = ALT,Tab,cyclenext
           bind = ALT,Tab,bringactivetotop
-          bind = ,XF86AudioRaiseVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
-          bind = ,XF86AudioLowerVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
-          binde = ,XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+          binde = ,XF86AudioRaiseVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+          binde = ,XF86AudioLowerVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+          bind = ,XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+          bind = ,XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_SOURCE@ toggle
           bind = ,XF86AudioPlay, exec, playerctl play-pause
           bind = ,XF86AudioPause, exec, playerctl play-pause
           bind = ,XF86AudioNext, exec, playerctl next
           bind = ,XF86AudioPrev, exec, playerctl previous
-          bind = ,XF86MonBrightnessDown,exec,brightnessctl set 5%-
-          bind = ,XF86MonBrightnessUp,exec,brightnessctl set +5%
+          binde = ,XF86MonBrightnessDown,exec,brightnessctl set 5%-
+          binde = ,XF86MonBrightnessUp,exec,brightnessctl set +5%
+          # trigger when the switch is turning off
+          bindl = , switch:off:Lid Switch,exec,hyprctl keyword monitor "eDP-1, 1366x768, 0x0, 1"
+          # trigger when the switch is turning on
+          bindl = , switch:on:Lid Switch,exec,hyprctl keyword monitor "eDP-1, disable"
         ''
       ];
   };

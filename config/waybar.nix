@@ -32,8 +32,8 @@ with lib;
         modules-right = [
           "custom/hyprbindings"
           "tray"
-          "custom/notification"
           "battery"
+          "custom/notification"
           "custom/exit"
           "clock"
         ];
@@ -54,19 +54,19 @@ with lib;
           tooltip-format = "<big>{:%A, %d.%B %Y }</big>\n<tt><small>{calendar}</small></tt>";
         };
         "hyprland/window" = {
-          max-length = 22;
+          max-length = 20;
           separate-outputs = false;
           rewrite = {
-            "" = " 🙈 No Windows? ";
+            "" = " No Windows ";
           };
         };
         "memory" = {
-          interval = 5;
+          interval = 30;
           format = " {}%";
           tooltip = true;
         };
         "cpu" = {
-          interval = 5;
+          interval = 30;
           format = " {usage:2}%";
           tooltip = true;
         };
@@ -186,10 +186,11 @@ with lib;
       }
     ];
     style = concatStrings [
+      # css
       ''
         * {
           font-family: JetBrainsMono Nerd Font Mono;
-          font-size: 16px;
+          font-size: 12px;
           border-radius: 0px;
           border: none;
           min-height: 0px;
