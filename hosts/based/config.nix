@@ -331,6 +331,22 @@
     flowtime
     mousam
     victor-mono
+    nixd
+    freetube
+    neovide
+    xclip
+    wl-clipboard
+    amberol
+    anup
+    libreoffice
+    lutris
+    wine64
+    wineWow64Packages.waylandFull
+    openpomodoro-cli
+    ente-auth
+    xwallpaper
+    xbindkeys
+    polybar
     #Awesome related
     xorg.xprop
     xorg.xinit
@@ -383,6 +399,26 @@
   # Services to start
 
   services = {
+    power-profiles-daemon.enable = false;
+    tlp = {
+      enable = true;
+      settings = {
+        CPU_SCALING_GOVERNOR_ON_AC = "performance";
+        CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+
+        CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+        CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+
+        CPU_MIN_PERF_ON_AC = 0;
+        CPU_MAX_PERF_ON_AC = 100;
+        CPU_MIN_PERF_ON_BAT = 0;
+        CPU_MAX_PERF_ON_BAT = 20;
+
+        #Optional helps save long term battery health
+        START_CHARGE_THRESH_BAT0 = 25; # 40 and bellow it starts to charge
+        STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
+      };
+    };
     kanata = {
       enable = true;
       keyboards = {
@@ -492,6 +528,14 @@
     disabledDefaultBackends = [ "escl" ];
   };
 
+  # Bluetooth Support
+  hardware.bluetooth.enable = false;
+  hardware.bluetooth.powerOnBoot = false;
+  services.blueman.enable = false;
+
+  powerManagement = {
+    powertop.enable = true;
+  };
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
