@@ -40,8 +40,8 @@ in
     recursive = true;
   };
   #home.file.".config/awesome" = {
-    #source = ../../config/awesome;
-    #recursive = true;
+  #source = ../../config/awesome;
+  #recursive = true;
   #};
   #home.file.".config/emacs" = {
   #  source = ../../config/emacs;
@@ -72,7 +72,10 @@ in
     userEmail = "${gitEmail}";
   };
   i18n.inputMethod.enabled = "fcitx5";
-  i18n.inputMethod.fcitx5.addons = with pkgs; [ fcitx5-configtool fcitx5-mozc ];
+  i18n.inputMethod.fcitx5.addons = with pkgs; [
+    fcitx5-configtool
+    fcitx5-mozc
+  ];
   # Create XDG Dirs
   xdg = {
     userDirs = {
@@ -120,7 +123,6 @@ in
     platformTheme.name = "gtk3";
   };
 
-
   # Scripts
   home.packages = [
     inputs.jerry.packages.${pkgs.system}.default
@@ -143,8 +145,8 @@ in
 
   services = {
     # mpd-mpris = {
-      # enable = false;
-      # mpd.port = 6600;
+    # enable = false;
+    # mpd.port = 6600;
     # };
     flameshot = {
       enable = true;
@@ -155,13 +157,16 @@ in
       activeOpacity = 1.0;
       inactiveOpacity = 0.8;
       shadow = true;
-      shadowOffsets = [ (-25) (-25) ];
+      shadowOffsets = [
+        (-25)
+        (-25)
+      ];
       shadowOpacity = 0.5;
       fade = false;
       fadeDelta = 3;
       fadeSteps = [
-        0.03
-        0.03
+        3.0e-2
+        3.0e-2
       ];
       opacityRules = [
         "100:class_g = 'Vivaldi-stable'"
@@ -171,11 +176,11 @@ in
       backend = "glx";
       vSync = true;
       settings = {
-        blur =
-          { method = "gaussian";
-              size = 10;
-              deviation = 5.0;
-          };
+        blur = {
+          method = "gaussian";
+          size = 10;
+          deviation = 5.0;
+        };
         shadow-radius = 25;
       };
     };
@@ -200,36 +205,35 @@ in
       };
     };
   };
-  
 
   programs = {
     spicetify =
-    let
-      spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
-    in
-    {
-      enable = true;
-      enabledExtensions = with spicePkgs.extensions; [
-        adblock
-        fullScreen
-        volumePercentage
-        showQueueDuration
-        goToSong
-        powerBar
-        skipOrPlayLikedSongs
-        volumeProfiles
-        playNext
-        history
-        keyboardShortcut
-        shuffle
-      ];
-      theme = spicePkgs.themes.catppuccin;
-      colorScheme = "mocha";
-    };
-    wezterm = {
+      let
+        spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+      in
+      {
         enable = true;
-        enableZshIntegration = true;
-        extraConfig =''
+        enabledExtensions = with spicePkgs.extensions; [
+          adblock
+          fullScreen
+          volumePercentage
+          showQueueDuration
+          goToSong
+          powerBar
+          skipOrPlayLikedSongs
+          volumeProfiles
+          playNext
+          history
+          keyboardShortcut
+          shuffle
+        ];
+        theme = spicePkgs.themes.catppuccin;
+        colorScheme = "mocha";
+      };
+    wezterm = {
+      enable = true;
+      enableZshIntegration = true;
+      extraConfig = ''
         return {
           font = wezterm.font_with_fallback {
                 "Pixilized",
@@ -243,21 +247,21 @@ in
           hide_tab_bar_if_only_one_tab = true,
           enable_wayland = false,
         }
-           '';
+      '';
     };
     zoxide = {
-        enable = true;
-        enableZshIntegration = true;
-        options = [ "--cmd cd" ];
+      enable = true;
+      enableZshIntegration = true;
+      options = [ "--cmd cd" ];
     };
     tmux = {
-        enable = true;
-        disableConfirmationPrompt = true;
-        keyMode = "vi";
-        mouse = true;
-        baseIndex = 1;
-        prefix = "C-s";
-        extraConfig = ''
+      enable = true;
+      disableConfirmationPrompt = true;
+      keyMode = "vi";
+      mouse = true;
+      baseIndex = 1;
+      prefix = "C-s";
+      extraConfig = ''
         unbind r
         bind r source-file ~/.config/tmux/tmux.conf
         set-option -sa terminal-overrides ',xterm*:Tc'
@@ -295,15 +299,15 @@ in
         bind-key -T copy-mode-vi v send-keys -X begin-selection
         bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
         bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
-        '';
-        plugins = with pkgs.tmuxPlugins; [
-          resurrect
-          catppuccin
-          sensible
-          vim-tmux-navigator
-          yank
-          continuum
-        ];
+      '';
+      plugins = with pkgs.tmuxPlugins; [
+        resurrect
+        catppuccin
+        sensible
+        vim-tmux-navigator
+        yank
+        continuum
+      ];
     };
     oh-my-posh = {
       enable = false;
@@ -317,9 +321,9 @@ in
       };
     };
     starship = {
-            enable = false;
-            package = pkgs.starship;
-          };
+      enable = false;
+      package = pkgs.starship;
+    };
     kitty = {
       enable = false;
       package = pkgs.kitty;
@@ -350,11 +354,10 @@ in
           source $HOME/.bashrc-personal
         fi
       '';
-     shellAliases = {
+      shellAliases = {
         sv = "sudo nvim";
-        fr = "nh os switch --hostname ${host} /home/${username}/zaneyos";
-        fu = "nh os switch --hostname ${host} --update /home/${username}/zaneyos";
-        zu = "sh <(curl -L https://gitlab.com/Zaney/zaneyos/-/raw/main/install-zaneyos.sh)";
+        fr = "nh os switch --hostname ${host} /home/${username}/cylisos";
+        fu = "nh os switch --hostname ${host} --update /home/${username}/cylisos";
         ncg = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
         v = "nvim";
         cat = "bat";
@@ -362,8 +365,8 @@ in
         ll = "eza -lh --icons --grid --group-directories-first";
         la = "eza -lah --icons --grid --group-directories-first";
         ".." = "cd ..";
-        host = "nvim ~/zaneyos/hosts/dragneel/";
-        config = "nvim ~/zaneyos/config/";
+        host = "nvim ~/cylisos/hosts/${host}/";
+        config = "nvim ~/cylisos/config/";
       };
     };
     # vscode = {
@@ -379,24 +382,23 @@ in
       syntaxHighlighting.enable = true;
       shellAliases = {
         sv = "sudo nvim";
-        fr = "nh os switch --hostname ${host} /home/${username}/zaneyos";
-        fu = "nh os switch --hostname ${host} --update /home/${username}/zaneyos";
-        zu = "sh <(curl -L https://gitlab.com/Zaney/zaneyos/-/raw/main/install-zaneyos.sh)";
+        fr = "nh os switch --hostname ${host} /home/${username}/cylisos";
+        fu = "nh os switch --hostname ${host} --update /home/${username}/cylisos";
         ncg = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
         v = "nvim";
         cat = "bat";
         ls = "eza --icons";
         ll = "eza -lh --icons --grid --group-directories-first";
         la = "eza -lah --icons --grid --group-directories-first";
-        host = "nvim ~/zaneyos/hosts/dragneel/";
-        config = "nvim ~/zaneyos/config/";
+        host = "nvim ~/cylisos/hosts/${host}/";
+        config = "nvim ~/cylisos/config/";
         py-server = "python -m http.server 8040";
         py-virt = "source .venv/bin/activate";
         py-virtc = "python3 -m venv .venv";
         zsh-e = "v ~/.zshrc";
         reload = "source ~/.zshrc";
-        nix-dev = "tmuxifier load-session nix";
-        awm = "tmuxifier load-session awm";
+        # nix-dev = "tmuxifier load-session nix";
+        # awm = "tmuxifier load-session awm";
         zl = "zellij";
         cmc = "cmus-remote -C 'clear'";
         cma = "cmus-remote -C 'add ~/Music";
@@ -436,7 +438,12 @@ in
       oh-my-zsh = {
         enable = true;
         plugins = [
-          "git" "sudo" "golang" "rust" "command-not-found" "pass"
+          "git"
+          "sudo"
+          "golang"
+          "rust"
+          "command-not-found"
+          "pass"
         ];
       };
       plugins = [
@@ -479,7 +486,7 @@ in
         };
         background = [
           {
-            path = "/home/${username}/Pictures/Wallpapers/zaney-wallpaper.jpg";
+            path = "/home/${username}/Pictures/Wallpapers/elden ring-mohg.png";
             blur_passes = 3;
             blur_size = 8;
           }

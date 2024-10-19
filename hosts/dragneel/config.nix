@@ -49,29 +49,28 @@
     };
     plymouth.enable = true;
   };
-  
 
   # Styling Options
   stylix = {
     enable = true;
     image = ../../config/wallpapers/japanese-purple.jpg;
     base16Scheme = {
-      base00= "1e1e2e"; # base
-      base01= "181825"; # mantle
-      base02= "313244"; # surface0
-      base03= "45475a"; # surface1
-      base04= "585b70"; # surface2
-      base05= "cdd6f4"; # text
-      base06= "f5e0dc"; # rosewater
-      base07= "b4befe"; # lavender
-      base08= "f38ba8"; # red
-      base09= "fab387"; # peach
-      base0A= "f9e2af"; # yellow
-      base0B= "a6e3a1"; # green
-      base0C= "94e2d5"; # teal
-      base0D= "89b4fa"; # blue
-      base0E= "cba6f7"; # mauve
-      base0F= "f2cdcd"; # flamingo
+      base00 = "1e1e2e"; # base
+      base01 = "181825"; # mantle
+      base02 = "313244"; # surface0
+      base03 = "45475a"; # surface1
+      base04 = "585b70"; # surface2
+      base05 = "cdd6f4"; # text
+      base06 = "f5e0dc"; # rosewater
+      base07 = "b4befe"; # lavender
+      base08 = "f38ba8"; # red
+      base09 = "fab387"; # peach
+      base0A = "f9e2af"; # yellow
+      base0B = "a6e3a1"; # green
+      base0C = "94e2d5"; # teal
+      base0D = "89b4fa"; # blue
+      base0E = "cba6f7"; # mauve
+      base0F = "f2cdcd"; # flamingo
     };
     polarity = "dark";
     opacity.terminal = 0.8;
@@ -131,9 +130,9 @@
 
   programs = {
     #nix-ld = {
-      #enable = true;
-      #libraries = with pkgs; [
-      #];
+    #enable = true;
+    #libraries = with pkgs; [
+    #];
     #};
     firefox.enable = false;
     gamemode.enable = true;
@@ -231,7 +230,7 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-      
+
   users = {
     mutableUsers = true;
   };
@@ -487,8 +486,8 @@
   };
 
   environment.variables = {
-    ZANEYOS_VERSION = "2.2";
-    ZANEYOS = "true";
+    CYLISOS_VERSION = "1.0";
+    CYLISOS = "true";
   };
 
   environment.pathsToLink = [ "/share/zsh" ];
@@ -509,7 +508,7 @@
   };
 
   # Services to start
-  
+
   services = {
     ollama = {
       enable = false;
@@ -520,20 +519,20 @@
       enable = true;
       keyboards = {
         main = {
-        config = ''
-          (defsrc
-            caps ret
-          )
-          
-          (defalias 
-            ;; tap caps lock as caps lock, hold caps lock as left control
-            caps (tap-hold 200 200 caps lctl)
-          )
-          (defalias enter (tap-hold 200 200 ret bspc))
-          (deflayer base
-            @caps @enter
-          )
-        '';
+          config = ''
+            (defsrc
+              caps ret
+            )
+
+            (defalias 
+              ;; tap caps lock as caps lock, hold caps lock as left control
+              caps (tap-hold 200 200 caps lctl)
+            )
+            (defalias enter (tap-hold 200 200 ret bspc))
+            (deflayer base
+              @caps @enter
+            )
+          '';
         };
       };
     };
@@ -553,7 +552,7 @@
       settings = {
         default_session = {
           user = username;
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd startx"; 
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd startx";
           #command = "${pkgs.greetd.tuigreet}/bin/tuigreet --sessions ${config.services.xserver.displayManager.sessionData.desktops}/share/xsessions:${config.services.xserver.displayManager.sessionData.desktops}/share/wayland-sessions --remember --remember-user-session";
         };
       };
@@ -600,7 +599,7 @@
     '';
   };
   systemd.services.mpd.environment = {
-      XDG_RUNTIME_DIR = "/run/user/${toString config.users.users.cylis.uid}";
+    XDG_RUNTIME_DIR = "/run/user/${toString config.users.users.cylis.uid}";
   };
   hardware.sane = {
     enable = true;
@@ -653,13 +652,16 @@
         "nix-command"
         "flakes"
       ];
-      # substituters = [ "https://hyprland.cachix.org" ];
-      # trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
       substituters = [
         "https://cache.garnix.io"
         "https://ghostty.cachix.org"
+        "https://hyprland.cachix.org"
       ];
-      trusted-public-keys = ["cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="];
+      trusted-public-keys = [
+        "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+        "ghostty.cachix.org-1:QB389yTa6gTyneehvqG58y0WnHjQOqgnA+wBnpWWxns="
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      ];
     };
     gc = {
       automatic = true;
