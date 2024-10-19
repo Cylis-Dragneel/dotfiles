@@ -67,6 +67,17 @@ in
     enable = true;
     userName = "${gitUsername}";
     userEmail = "${gitEmail}";
+    extraConfig = {
+      init = {
+        defaultBranch = "main";
+      };
+      color = {
+        ui = "auto";
+      };
+      pull = {
+        rebase = false;
+      };
+    };
   };
   i18n.inputMethod.enabled = "fcitx5";
   i18n.inputMethod.fcitx5.addons = with pkgs; [
@@ -207,6 +218,11 @@ in
   };
 
   programs = {
+    direnv = {
+      enable = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
+    };
     spicetify =
       let
         spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
@@ -264,6 +280,9 @@ in
       extraConfig = ''
         unbind r
         bind r source-file ~/.config/tmux/tmux.conf
+        bind '"' split-window -c "#{pane_current_path}"
+        bind % split-window -h -c "#{pane_current_path}"
+        bind c new-window -c "#{pane_current_path}"
         #catppuccin setup + status line
         set-option -g @catppuccin_flavour 'mocha'
         set -g @catppuccin_window_left_separator ""
@@ -436,6 +455,7 @@ in
           "rust"
           "command-not-found"
           "pass"
+          "direnv"
         ];
       };
       plugins = [
