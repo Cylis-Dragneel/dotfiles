@@ -155,10 +155,15 @@ with lib;
           on-click = "sleep 0.1 && task-waybar";
           escape = true;
         };
+        "custom/battery-noti" = {
+          exec = "battery";
+          interval = 60;
+          return-type = "void";
+        };
         "battery" = {
           states = {
             warning = 30;
-            critical = 15;
+            critical = 20;
           };
           format = "{icon} {capacity}%";
           format-charging = "󰂄 {capacity}%";
