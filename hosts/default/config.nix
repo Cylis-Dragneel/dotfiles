@@ -305,8 +305,8 @@
   };
 
   environment.variables = {
-    ZANEYOS_VERSION = "2.2";
-    ZANEYOS = "true";
+    CYLISOS_VERSION = "1.0";
+    CYLISOS = "true";
   };
 
   # Extra Portal Configuration
@@ -463,8 +463,8 @@
   # OpenGL
   hardware.opengl = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
+    # driSupport = true;
+    # driSupport32Bit = true;
   };
 
   # Open ports in the firewall.
