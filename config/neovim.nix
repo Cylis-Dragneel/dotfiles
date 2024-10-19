@@ -15,20 +15,29 @@ in
       vimdiffAlias = true;
       withNodeJs = true;
       extraPackages = with pkgs; [
-        lua-language-server
-        gopls
-        xclip
-        wl-clipboard
-        luajitPackages.lua-lsp
+        # LSP
+        vscode-langservers-extracted
         nil
         rust-analyzer
-        nodePackages.bash-language-server
         yaml-language-server
-        pyright
+        lua-language-server
+        # haskell-language-server
+        gopls
+        basedpyright
+        vim-language-server
+        bash-language-server
         marksman
-        bashdb
+        luajitPackages.lua-lsp
+        # Formatters
+        gofumpt
+        golines
+        goimports-reviser
+        stylua
+        prettierd
+        nixfmt-rfc-style
       ];
       plugins = with pkgs.vimPlugins; [
+        none-ls-nvim
         mini-nvim
         supermaven-nvim
         obsidian-nvim
@@ -72,30 +81,30 @@ in
         set noemoji
         nnoremap : <cmd>FineCmdline<CR>
       '';
-      extraLuaConfig = ''
-        ${builtins.readFile ./nvim/options.lua}
-        ${builtins.readFile ./nvim/keymaps.lua}
-        ${builtins.readFile ./nvim/plugins/alpha.lua}
-        ${builtins.readFile ./nvim/plugins/autopairs.lua}
-        ${builtins.readFile ./nvim/plugins/auto-session.lua}
-        ${builtins.readFile ./nvim/plugins/comment.lua}
         ${builtins.readFile ./nvim/plugins/supermaven.lua}
-        ${builtins.readFile ./nvim/plugins/cmp.lua}
-        ${builtins.readFile ./nvim/plugins/lsp.lua}
-        ${builtins.readFile ./nvim/plugins/nvim-tree.lua}
-        ${builtins.readFile ./nvim/plugins/telescope.lua}
-        ${builtins.readFile ./nvim/plugins/todo-comments.lua}
-        ${builtins.readFile ./nvim/plugins/treesitter.lua}
-        ${builtins.readFile ./nvim/plugins/fine-cmdline.lua}
-        ${builtins.readFile ./nvim/plugins/bufferline.lua}
-        ${builtins.readFile ./nvim/plugins/whichkey.lua}
-        ${builtins.readFile ./nvim/plugins/obsidian.lua}
-        require("ibl").setup()
-        require("colorizer").setup()
-        require("lualine").setup({
-          icons_enabled = true,
-        })
-      '';
+      extraLuaConfig = # lua
+        ''
+          ${builtins.readFile ./nvim/options.lua}
+          ${builtins.readFile ./nvim/keymaps.lua}
+          ${builtins.readFile ./nvim/plugins/alpha.lua}
+          ${builtins.readFile ./nvim/plugins/autopairs.lua}
+          ${builtins.readFile ./nvim/plugins/auto-session.lua}
+          ${builtins.readFile ./nvim/plugins/comment.lua}
+          ${builtins.readFile ./nvim/plugins/cmp.lua}
+          ${builtins.readFile ./nvim/plugins/lsp.lua}
+          ${builtins.readFile ./nvim/plugins/nvim-tree.lua}
+          ${builtins.readFile ./nvim/plugins/telescope.lua}
+          ${builtins.readFile ./nvim/plugins/todo-comments.lua}
+          ${builtins.readFile ./nvim/plugins/treesitter.lua}
+          ${builtins.readFile ./nvim/plugins/fine-cmdline.lua}
+          ${builtins.readFile ./nvim/plugins/bufferline.lua}
+          ${builtins.readFile ./nvim/plugins/whichkey.lua}
+          ${builtins.readFile ./nvim/plugins/obsidian.lua}
+          ${builtins.readFile ./nvim/plugins/none.lua}
+          ${builtins.readFile ./nvim/plugins/lualine.lua}
+          require("ibl").setup()
+          require("colorizer").setup()
+        '';
     };
   };
 }
