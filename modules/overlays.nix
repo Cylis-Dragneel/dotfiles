@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   nixpkgs.overlays = [
@@ -9,11 +14,10 @@
           owner = "awesomeWM";
           repo = "awesome";
           rev = "master";
-          hash = "sha256-uaskBbnX8NgxrprI4UbPfb5cRqdRsJZv0YXXshfsxFU=";
+          hash = "sha256-CpieBypRPQ9h/RzWskvv/zSVbPPBHCWOIdrGBySBtlQ=";
         };
-        patches = [];
+        patches = [ ];
 
-          
         postPatch = ''
           patchShebangs tests/examples/_postprocess.lua
         '';
@@ -27,12 +31,13 @@
           hash = "sha256-z3lEkbAU3thWNszFsv23uJdASHil9Wgb8SA925PIq7A=";
         };
       });
-    }
-    )
-    (import (builtins.fetchGit {
-      url = "https://github.com/nix-community/emacs-overlay.git";
-      ref = "master";
-      rev = "e171f7ac85c6aba2463fee6f22288d6d249c9c7a";
-    }))
+    })
+    (import (
+      builtins.fetchGit {
+        url = "https://github.com/nix-community/emacs-overlay.git";
+        ref = "master";
+        rev = "e171f7ac85c6aba2463fee6f22288d6d249c9c7a";
+      }
+    ))
   ];
 }

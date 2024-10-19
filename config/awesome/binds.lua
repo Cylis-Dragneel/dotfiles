@@ -4,10 +4,10 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- Mouse
 client.connect_signal("request::default_mousebindings", function()
     awful.mouse.append_client_mousebindings({
-        awful.button({ mod }, 1, function(c)
+        awful.button({ modkey }, 1, function(c)
             c:activate { context = "mouse_click", action = "mouse_move"  }
         end),
-        awful.button({ mod }, 3, function(c)
+        awful.button({ modkey }, 3, function(c)
             c:activate { context = "mouse_click", action = "mouse_resize"}
         end)
     })
@@ -17,7 +17,7 @@ end)
 awful.keyboard.append_global_keybindings({
       -- Awesome keybinds
         awful.key(
-          { modkey }, "k",
+          { modkey }, "/",
             hotkeys_popup.show_help,
           { description = "show keybinds", group = "awesome" }
         ),
@@ -25,6 +25,11 @@ awful.keyboard.append_global_keybindings({
           { modkey, "Shift" }, "r",
             awesome.restart,
           { description = "reload awesome", group = "awesome" }
+        ),
+        awful.key(
+          { modkey, "Shift" }, "q",
+            awesome.quit,
+          { description = "quit awm", group = "awesome"}
         ),
         awful.key(
           { modkey }, "Tab", function()
@@ -43,6 +48,12 @@ awful.keyboard.append_global_keybindings({
             awful.spawn.with_shell(terminal)
           end,
           { description = "run terminal", group = "awesome" }
+        ),
+        awful.key(
+          { modkey, "Shift" }, "Return", function()
+            awful.spawn("rofi -show drun")
+          end,
+          { description = "run rofi", group = "awesome" }
         ),
 
       -- Tag keybinds
