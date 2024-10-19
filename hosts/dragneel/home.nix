@@ -44,6 +44,26 @@ in
     source = ../../config/awesome;
     recursive = true;
   };
+  home.file.".config/cmus" = {
+    source = ../../config/cmus;
+    recursive = true;
+  };
+  home.file.".config/ghostty" = {
+    source = ../../config/ghostty;
+    recursive = true;
+  };
+  home.file.".config/i3" = {
+    source = ../../config/i3;
+    recursive = true;
+  };
+  home.file.".config/jerry" = {
+    source = ../../config/jerry;
+    recursive = true;
+  };
+  home.file.".config/anup" = {
+    source = ../../config/anup;
+    recursive = true;
+  };
   home.file.".config/emacs" = {
     source = ../../config/emacs;
     recursive = true;

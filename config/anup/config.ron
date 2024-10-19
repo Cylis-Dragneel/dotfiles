@@ -1,0 +1,14 @@
+(
+    series_dir: "/home/cylis/Downloads",
+    reset_dates_on_rewatch: false,
+    episode: (
+        percent_watched_to_progress: (90.0),
+        player: "mpv",
+        player_args: ["--vo=x11"],
+    ),
+    tui: (
+        keys: (
+            play_next_episode: "enter",
+        ),
+    ),
+)
