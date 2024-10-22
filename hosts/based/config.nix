@@ -51,53 +51,53 @@
   };
 
   # Styling Options
-  # stylix = {
-  # enable = true;
-  # image = ../../config/wallpapers/japanese-purple.jpg;
-  #   base16Scheme = {
-  #     base00 = "272e33";
-  #     base01 = "2e383c";
-  #     base02 = "414b50";
-  #     base03 = "859289";
-  #     base04 = "9da9a0";
-  #     base05 = "d3c6aa";
-  #     base06 = "edeada";
-  #     base07 = "fffbef";
-  #     base08 = "e67e80";
-  #     base09 = "e69875";
-  #     base0A = "dbbc7f";
-  #     base0B = "a7c080";
-  #     base0C = "83c092";
-  #     base0D = "7fbbb3";
-  #     base0E = "d699b6";
-  #     base0F = "9da9a0";
-  #   };
-  #   polarity = "dark";
-  #   opacity.terminal = 0.8;
-  #   cursor.package = pkgs.banana-cursor;
-  #   cursor.name = "Banana";
-  #   cursor.size = 24;
-  #   fonts = {
-  #     monospace = {
-  #       package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
-  #       name = "JetBrainsMono Nerd Font Mono";
-  #     };
-  #     sansSerif = {
-  #       package = pkgs.montserrat;
-  #       name = "Montserrat";
-  #     };
-  #     serif = {
-  #       package = pkgs.montserrat;
-  #       name = "Montserrat";
-  #     };
-  #     sizes = {
-  #       applications = 12;
-  #       terminal = 15;
-  #       desktop = 11;
-  #       popups = 12;
-  #     };
-  #   };
-  # };
+  stylix = {
+    enable = true;
+    image = ../../config/wallpapers/japanese-purple.jpg;
+    base16Scheme = {
+      base00 = "272e33";
+      base01 = "2e383c";
+      base02 = "414b50";
+      base03 = "859289";
+      base04 = "9da9a0";
+      base05 = "d3c6aa";
+      base06 = "edeada";
+      base07 = "fffbef";
+      base08 = "e67e80";
+      base09 = "e69875";
+      base0A = "dbbc7f";
+      base0B = "a7c080";
+      base0C = "83c092";
+      base0D = "7fbbb3";
+      base0E = "d699b6";
+      base0F = "9da9a0";
+    };
+    polarity = "dark";
+    opacity.terminal = 0.8;
+    cursor.package = pkgs.banana-cursor;
+    cursor.name = "Banana";
+    cursor.size = 24;
+    fonts = {
+      monospace = {
+        package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
+        name = "JetBrainsMono Nerd Font Mono";
+      };
+      sansSerif = {
+        package = pkgs.montserrat;
+        name = "Montserrat";
+      };
+      serif = {
+        package = pkgs.montserrat;
+        name = "Montserrat";
+      };
+      sizes = {
+        applications = 12;
+        terminal = 15;
+        desktop = 11;
+        popups = 12;
+      };
+    };
+  };
 
   # Extra Module Options
   # drivers.amdgpu.enable = false;
@@ -493,7 +493,7 @@
     };
     ipp-usb.enable = true;
     syncthing = {
-      enable = true;
+      enable = false;
       user = "${username}";
       dataDir = "/home/${username}";
       configDir = "/home/${username}/.config/syncthing";

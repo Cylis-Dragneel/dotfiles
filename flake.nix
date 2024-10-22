@@ -21,13 +21,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     zen.url = "github:MarceColl/zen-browser-flake";
-    # pollymc = {
-    #   url = "github:fn2006/PollyMC";
-    # };
+    pollymc = {
+      url = "github:fn2006/PollyMC";
+    };
     fine-cmdline = {
       url = "github:VonHeikemen/fine-cmdline.nvim";
       flake = false;
     };
+    niri.url = "github:sodiboo/niri-flake";
+    umu = {
+      url = "git+https://github.com/Open-Wine-Components/umu-launcher/?dir=packaging\/nix&submodules=1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # base16.url = "github:SenchoPens/base16.nix";
     # This is required for plugin support.
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     # hyprland-plugins = {
@@ -68,10 +74,14 @@
             (
               { pkgs, ... }:
               {
-                #nixpkgs.overlays = [pollymc.overlays.default];
+                nixpkgs.overlays = [
+                  inputs.niri.overlays.niri
+                ];
                 environment.systemPackages = [
                   ghostty.packages.x86_64-linux.default
                   inputs.zen.packages.x86_64-linux.default
+                  pkgs.niri-unstable
+                  inputs.umu.packages.${pkgs.system}.umu
                 ];
                 home-manager.extraSpecialArgs = {
                   inherit username;
@@ -90,50 +100,6 @@
                 home-manager.useUserPackages = true;
                 home-manager.backupFileExtension = "bak";
                 home-manager.users.${username} = import ./hosts/${host}/home.nix;
-              }
-            )
-          ];
-        };
-        "${host2}" = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit system;
-            inherit inputs;
-            inherit username;
-            inherit host2;
-          };
-          modules = [
-            ./hosts/${host2}/config.nix
-            inputs.stylix.nixosModules.stylix
-            home-manager.nixosModules.home-manager
-            (
-              { pkgs, ... }:
-              {
-                nixpkgs.overlays = [
-                  inputs.pollymc.overlays.default
-                  inputs.niri.overlays.niri
-                ];
-                environment.systemPackages = [
-                  ghostty.packages.x86_64-linux.default
-                  inputs.zen.packages.x86_64-linux.default
-                  #pkgs.pollymc
-                ];
-                home-manager.extraSpecialArgs = {
-                  inherit username;
-                  inherit inputs;
-                  inherit host2;
-                  inherit spicetify-nix;
-                  pkgs-stable = import nixpkgs-stable {
-                    inherit system;
-                    inherit inputs;
-                    inherit username;
-                    inherit host2;
-                    config.allowUnfree = true;
-                  };
-                };
-                home-manager.useGlobalPkgs = true;
-                home-manager.useUserPackages = true;
-                home-manager.backupFileExtension = "bak";
-                home-manager.users.${username} = import ./hosts/${host2}/home.nix;
               }
             )
           ];
