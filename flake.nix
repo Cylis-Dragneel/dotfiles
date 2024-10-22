@@ -49,6 +49,7 @@
     let
       system = "x86_64-linux";
       host = "based";
+      host2 = "dragneel";
       username = "cylis";
     in
     {
@@ -71,7 +72,6 @@
                 environment.systemPackages = [
                   ghostty.packages.x86_64-linux.default
                   inputs.zen.packages.x86_64-linux.default
-                  #pkgs.pollymc
                 ];
                 home-manager.extraSpecialArgs = {
                   inherit username;
@@ -90,6 +90,50 @@
                 home-manager.useUserPackages = true;
                 home-manager.backupFileExtension = "bak";
                 home-manager.users.${username} = import ./hosts/${host}/home.nix;
+              }
+            )
+          ];
+        };
+        "${host2}" = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit system;
+            inherit inputs;
+            inherit username;
+            inherit host2;
+          };
+          modules = [
+            ./hosts/${host2}/config.nix
+            inputs.stylix.nixosModules.stylix
+            home-manager.nixosModules.home-manager
+            (
+              { pkgs, ... }:
+              {
+                nixpkgs.overlays = [
+                  inputs.pollymc.overlays.default
+                  inputs.niri.overlays.niri
+                ];
+                environment.systemPackages = [
+                  ghostty.packages.x86_64-linux.default
+                  inputs.zen.packages.x86_64-linux.default
+                  #pkgs.pollymc
+                ];
+                home-manager.extraSpecialArgs = {
+                  inherit username;
+                  inherit inputs;
+                  inherit host2;
+                  inherit spicetify-nix;
+                  pkgs-stable = import nixpkgs-stable {
+                    inherit system;
+                    inherit inputs;
+                    inherit username;
+                    inherit host2;
+                    config.allowUnfree = true;
+                  };
+                };
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.backupFileExtension = "bak";
+                home-manager.users.${username} = import ./hosts/${host2}/home.nix;
               }
             )
           ];

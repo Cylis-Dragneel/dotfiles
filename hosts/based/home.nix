@@ -129,10 +129,10 @@ in
   };
 
   # Styling Options
-  stylix.targets.waybar.enable = false;
-  stylix.targets.rofi.enable = false;
+  # stylix.targets.waybar.enable = false;
+  # stylix.targets.rofi.enable = false;
   # stylix.targets.hyprland.enable = false;
-  stylix.targets.kde.enable = false;
+  # stylix.targets.kde.enable = false;
   gtk = {
     iconTheme = {
       name = "Papirus-Dark";
@@ -177,6 +177,12 @@ in
     client.default_app.use_magnet = true;
     source.nyaa.default_sort = "Seeders";
   };
+  # programs.nyaa = {
+  #   enable = true;
+  #   download_client = "DefaultApp";
+  #   client.default_app.use_magnet = true;
+  #   source.nyaa.default_sort = "Seeders";
+  # };
 
   services = {
     flameshot = {

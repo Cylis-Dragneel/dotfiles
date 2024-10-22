@@ -2,7 +2,7 @@
   pkgs,
   pkgs-stable,
   username,
-  host,
+  host2,
   inputs,
   ...
 }:
@@ -171,7 +171,7 @@ in
     (import ../../scripts/screenshootin.nix { inherit pkgs; })
     (import ../../scripts/list-hypr-bindings.nix {
       inherit pkgs;
-      inherit host;
+      inherit host2;
     })
   ];
 
@@ -400,8 +400,8 @@ in
       '';
       shellAliases = {
         sv = "sudo nvim";
-        fr = "nh os switch --hostname ${host} /home/${username}/cylisos";
-        fu = "nh os switch --hostname ${host} --update /home/${username}/cylisos";
+        fr = "nh os switch --hostname ${host2} /home/${username}/cylisos";
+        fu = "nh os switch --hostname ${host2} --update /home/${username}/cylisos";
         ncg = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
         v = "nvim";
         cat = "bat";
@@ -409,7 +409,7 @@ in
         ll = "eza -lh --icons --grid --group-directories-first";
         la = "eza -lah --icons --grid --group-directories-first";
         ".." = "cd ..";
-        host = "nvim ~/cylisos/hosts/${host}/";
+        host = "nvim ~/cylisos/hosts/${host2}/";
         config = "nvim ~/cylisos/config/";
       };
     };
@@ -420,15 +420,15 @@ in
       syntaxHighlighting.enable = true;
       shellAliases = {
         sv = "sudo nvim";
-        fr = "nh os switch --hostname ${host} /home/${username}/cylisos";
-        fu = "nh os switch --hostname ${host} --update /home/${username}/cylisos";
+        fr = "nh os switch --hostname ${host2} /home/${username}/cylisos";
+        fu = "nh os switch --hostname ${host2} --update /home/${username}/cylisos";
         ncg = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
         v = "nvim";
         cat = "bat";
         ls = "eza --icons";
         ll = "eza -lh --icons --grid --group-directories-first";
         la = "eza -lah --icons --grid --group-directories-first";
-        host = "nvim ~/cylisos/hosts/${host}/";
+        host = "nvim ~/cylisos/hosts/${host2}/";
         config = "nvim ~/cylisos/config/";
         py-server = "python -m http.server 8040";
         py-virt = "source .venv/bin/activate";
