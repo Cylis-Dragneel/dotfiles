@@ -21,6 +21,7 @@ in
         rust-analyzer
         yaml-language-server
         lua-language-server
+        nixd
         # haskell-language-server
         gopls
         basedpyright
